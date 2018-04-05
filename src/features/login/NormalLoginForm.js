@@ -1,9 +1,12 @@
 import React from "react";
 import "./NormalLoginForm.css";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Link } from 'react-router';
+
 const FormItem = Form.Item;
 
 export default () => (
+
   <Form onSubmit={this.handleSubmit} className="login-form ">
     <FormItem>
       <h3>Username</h3>
@@ -22,8 +25,11 @@ export default () => (
     </FormItem>
     <FormItem>
       <Button type="primary" htmlType="submit" className="login-form-button">
-        Log in
+          <Link to = {'/student/1234'}>
+            Log in
+          </Link>
       </Button>
     </FormItem>
   </Form>
+
 );

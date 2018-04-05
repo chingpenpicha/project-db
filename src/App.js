@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Link } from 'react-router';
 
-class App extends Component {
-  render() {
+const App = (props) => {
+  return (
+    <div>
+      <div>test</div>
+      <li>
+        <Link to="/login">About</Link>
+        {props.children}
+      </li>
+    </div>
+  );
+};
+
+export default App;
+
+
+
+/*
+const App = React.createClass({
+
+ render: function() {
+
+   const viewStateUi = getViewStateUi(this.state.appState);
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Header />
+        <Link href="/about">About</Link>
+        {viewStateUi}
+        {this.props.children}
       </div>
     );
   }
-}
-
-export default App;
+})
+*/
