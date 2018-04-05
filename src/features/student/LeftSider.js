@@ -8,6 +8,10 @@ export default () => (
     style={{ overflow: "auto", height: "100vh", position: "fixed", left: 0 }}
   >
     <div className="logo" />
+    <img
+      style={{ height: 100, weight: 100, margin: 50 }}
+      src="https://1.bp.blogspot.com/-5bPNsF5plzw/VnJWs-7RbrI/AAAAAAAARmA/DaZmn8YUjAk/s1600-r/logo_research_at_google_color_1x_web_512dp.png"
+    />
     <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
       <Menu.Item key="1">
         <Icon type="user" />
