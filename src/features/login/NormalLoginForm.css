@@ -1,9 +1,6 @@
 .login-form {
-  max-width: 60%;
+  max-width: 400px;
 }
 .login-form-forgot {
   float: right;
-}
-.login-form-button {
-  max-width: 60%;
 }

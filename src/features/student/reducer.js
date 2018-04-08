@@ -4,10 +4,25 @@ const SEARCH_TYPE = "SEARCH_TYPE";
 const SEARCH_REQ = "SEARCH_REQ";
 const SEARCH_REQ_PENDING = "SEARCH_REQ_PENDING";
 const SEARCH_REQ_FULFILLED = "SEARCH_REQ_FULFILLED";
+const MYTEST = "MYTEST";
 
 const initialState = {
-  text: "",
+  courseRegist: [{
+    courseId : '1234',
+    section : '1',
+    courseName : 'SA',
+    credit : '3'
+  },
+  {
+    courseId : '12345',
+    section : '12',
+    courseName : 'Data Base',
+    credit : '3'
+  }],
   result: [],
+  studentName : 'Kongnut Songwattana',
+  studentCode : '5830047621',
+  studentFaculty : 'Engineering',
   loading: false
 };
 
@@ -35,6 +50,11 @@ export default (state = initialState, action) => {
         loading: false,
         result: action.payload.map(e => e.urls.small)
       };
+    case MYTEST :
+      return{
+        ...state,
+        text: action.e
+      }
     default:
       return state;
   }
@@ -44,6 +64,10 @@ export const searchType = text => ({
   type: SEARCH_TYPE,
   text
 });
+
+export const myTest = e => ({
+  type : MYTEST
+})
 
 export const searchReq = text => ({
   type: SEARCH_REQ,
