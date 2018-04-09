@@ -1,15 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setField } from "./reducer";
-import { Layout, Menu, Form, Icon, Input, Button, Radio, Table } from "antd";
+import { Layout, Input, Table } from "antd";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-import { Link } from "react-router-dom";
-
 const { Header, Content, Footer, Sider } = Layout;
-
-const FormItem = Form.Item;
 
 const enhance = connect(
   state => ({
@@ -57,20 +53,6 @@ const data = [
   }
 ];
 
-const EditableCell = ({ editable, value, onChange }) => (
-  <div>
-    {editable ? (
-      <Input
-        style={{ margin: "-5px 0" }}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-      />
-    ) : (
-      value
-    )}
-  </div>
-);
-
 const registerPage = props => (
   <Layout style={{ background: "#fff" }}>
     <Header
@@ -78,21 +60,28 @@ const registerPage = props => (
         background: "#fff",
         textAlign: "center",
         marginLeft: 200,
-        marginTop: 100
+        marginTop: 20
       }}
     >
-      <div>
-        Faculty : {props.studentFaculty} Name : {props.studentName} Code :{" "}
-        {props.studentCode}
-        <Table
-          columns={columns}
-          dataSource={data}
-          size="middle"
-          pagination={false}
-        />
-        <div>Boss @Coperation</div>
-      </div>
+      <h1>ลงทะเบียนเรียน</h1>
     </Header>
+    <Layout
+      style={{
+        background: "#fff",
+        marginLeft: 200,
+        marginTop: 50,
+        paddingLeft: 100,
+        paddingRight: 100
+      }}
+    >
+      <p>ปีการศึกษา 2555 เทอม 2</p>
+      <Table
+        columns={columns}
+        dataSource={data}
+        size="middle"
+        pagination={false}
+      />
+    </Layout>
   </Layout>
 );
 
