@@ -9,9 +9,9 @@ const { Sider, Content, Footer } = Layout;
 
 const enhance = connect(
   state => ({
-    userId: state.userId,
-    password: state.password,
-    userType: state.userType
+    userId: state.login.userId,
+    password: state.login.password,
+    userType: state.login.userType
   }),
   { setField, setType }
 );
@@ -27,6 +27,7 @@ const StudentPage = props => (
         <div style={{ background: "#fff", padding: 50 }}>
           <div style={{ minHeight: 30 }} />
           <NormalLoginForm
+            test={e => console.log(props)}
             onChangeRadio={e => props.setType(e)}
             onChange={(key, value) => props.setField(key, value)}
             userId={props.userId}

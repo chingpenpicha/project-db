@@ -8,9 +8,9 @@ import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import loginReducer from "./features/login/reducer";
 import studentReducer from "./features/student/reducer";
 import promiseMiddleware from "redux-promise-middleware";
-import { Router, Route, IndexRoute, browserHistory } from "react-router";
-import LoginPage from "./features/login/LoginPage";
-import StudentPage from "./features/student/StudentPage";
+import { Router, Route, IndexRoute } from "react-router";
+import {BrowserRouter} from "react-router-dom";
+import Routes from "./routes.js"
 
 import "antd/dist/antd.css";
 
@@ -28,10 +28,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={LoginPage} />
-      <Route path="student/:id" component={StudentPage} />
-    </Router>
+    <BrowserRouter>
+        <Routes/>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

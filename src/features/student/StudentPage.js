@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchType, searchReq } from "./reducer";
+import { setField } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
-import LeftSider from "./LeftSider";
+
+import { Link } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 //import "./Search.css";
 
-const enhance = connect(state => state, { searchType, searchReq });
+const enhance = connect(state => ({}), { setField });
 
 const StudentPage = props => (
   <Layout>
-    <LeftSider />
     <Layout style={{ marginLeft: 200 }}>
       <Header style={{ background: "#fff", padding: 0 }} />
       <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
