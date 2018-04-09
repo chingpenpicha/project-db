@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchReq, searchType } from "./reducer";
+import { setField } from "./reducer";
 import { Layout, Menu, Form, Icon, Input, Button, Radio } from "antd";
-import LeftSider from "./LeftSider";
 import ReactTable from 'react-table';
 import 'react-table/react-table.css'
 
@@ -33,7 +32,7 @@ const enhance = connect(
     studentCode : state.student.studentCode,
     studentFaculty : state.student.studentFaculty
   }),
-  { searchReq, searchType }
+  { setField }
 );
 
 const registerPage = props => (

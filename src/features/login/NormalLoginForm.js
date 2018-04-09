@@ -3,8 +3,10 @@ import "./NormalLoginForm.css";
 
 import { Link } from "react-router-dom";
 
-import { Form, Icon, Input, Button, Radio } from "antd";
+import { Form, Icon, Input, Radio } from "antd";
 import { width } from "window-size";
+import MyButton from "./button"
+
 const FormItem = Form.Item;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -52,20 +54,7 @@ export default props => (
           />
         </FormItem>
         <FormItem>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-            style={{
-              width: 200,
-              textAlign: "center",
-              height: 50,
-              fontSize: 20,
-              marginTop: 10
-            }}
-          >
-            <Link to = {"/student/" + props.userId}>Log in</Link>
-          </Button>
+          <MyButton studentName = {props.userId}/>
         </FormItem>
       </Form>
     </div>

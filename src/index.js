@@ -11,9 +11,6 @@ import promiseMiddleware from "redux-promise-middleware";
 import { Router, Route, IndexRoute } from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Routes from "./routes.js"
-import LoginPage from "./features/login/LoginPage";
-import StudentPage from "./features/student/StudentPage";
-import RegisterPage from "./features/student/register"
 
 import "antd/dist/antd.css";
 

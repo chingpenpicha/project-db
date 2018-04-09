@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchType, searchReq, myTest } from "./reducer";
+import { setField } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
-import LeftSider from "./LeftSider";
 
 import { Link } from "react-router-dom";
 
@@ -10,20 +9,13 @@ import { Link } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 //import "./Search.css";
 
-function test(){
-  console.log(1);
-  return <Link to = "/" />;
-};
-
 const enhance = connect(state => ({
-    text : state.student.text
   }),
- { searchType, searchReq }
+ { setField }
 );
 
 const StudentPage = props => (
   <Layout>
-    <LeftSider />
     <Layout style={{ marginLeft: 200 }}>
       <Header style={{ background: "#fff", padding: 0 }} />
       <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
