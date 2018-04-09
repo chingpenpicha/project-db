@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from "redux";
+import {connect} from "react-redux";
 import "./LeftSider.css";
 import { setField } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
@@ -59,4 +59,4 @@ const LeftSider = props => (
   </Sider>
 );
 
-export default enchance(LeftSider);
+export default enhance(LeftSider);

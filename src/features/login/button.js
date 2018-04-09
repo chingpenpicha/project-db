@@ -25,7 +25,7 @@ class MyButton extends Component {
               fontSize: 20,
               marginTop: 10
             }}>
-                <Link to={"/student/" + this.props.studentName} >Log in</Link>
+                <Link to={"/student/" + this.props.studentName +"/home"} >Log in</Link>
             </Button>
         );
       }
