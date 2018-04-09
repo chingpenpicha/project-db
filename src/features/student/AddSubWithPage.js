@@ -156,16 +156,7 @@ const AddSubWithPage = props => (
           <Button style={{ width: 100 }} type="primary" htmlType="submit">
             Save
           </Button>
-          <Popconfirm
-            placement="right"
-            title="ต้องการยืนยันใช่หรือไม่"
-            okText="ใช่"
-            cancelText="ไม่"
-          >
-            <Button style={{ width: 100, marginLeft: 100 }} type="danger">
-              ยืนยัน
-            </Button>
-          </Popconfirm>
+
           <Footer
             style={{ marginLeft: 100, width: "100%", background: "#fff" }}
           />
