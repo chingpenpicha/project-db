@@ -38,7 +38,7 @@ const LeftSider = props => (
           <span className="nav-text">ลงทะเบียนเรียน</span>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link to={"/student/" + props.userId + "/register"} />
+          <Link to={"/student/" + props.userId + "/addSubWith"} />
           <Icon type="edit" />
           <span className="nav-text">เพิ่ม/ลด</span>
         </Menu.Item>
@@ -53,7 +53,7 @@ const LeftSider = props => (
           <span className="nav-text">ขอใบคำร้อง</span>
         </Menu.Item>
         <Menu.Item key="5">
-          <Link to={"/student/" + props.userId + "/timeTable"} />
+          <Link to={"/student/" + props.userId + "/searchTable"} />
           <Icon type="table" />
           <span className="nav-text">ตารางเรียน</span>
         </Menu.Item>

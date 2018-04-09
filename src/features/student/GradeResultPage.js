@@ -1,13 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Layout, Menu, Form, Icon, Input, Button, Radio, Table } from "antd";
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+import { Layout } from "antd";
 
-import { Link } from "react-router-dom";
 import GradeTable from "./GradeTable";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header } = Layout;
 
 const enhance = connect(
   state => ({
@@ -40,7 +37,6 @@ const GradeResultPage = props => (
     >
       <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 1" />
       <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 2" />
-      <div>Boss @Coperation</div>
     </Layout>
   </Layout>
 );
