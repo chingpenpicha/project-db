@@ -11,7 +11,8 @@ const enhance = connect(
   state => ({
     userId: state.login.userId,
     password: state.login.password,
-    userType: state.login.userType
+    userType: state.login.userType,
+    loginSuccess : state.login.loginSuccess
   }),
   { setField, setType }
 );
@@ -32,6 +33,7 @@ const StudentPage = props => (
             onChange={(key, value) => props.setField(key, value)}
             userId={props.userId}
             password={props.password}
+            loginSuccess = {props.loginSuccess}
           />
         </div>
       </Content>

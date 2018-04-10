@@ -53,7 +53,7 @@ export default props => (
           />
         </FormItem>
         <FormItem>
-          <MyButton studentName={props.userId} />
+          <MyButton props = {props} />
         </FormItem>
       </Form>
     </div>

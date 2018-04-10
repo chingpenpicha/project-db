@@ -6,7 +6,8 @@ const SET_TYPE = "SET_TYPE";
 const initialState = {
   userId: "",
   password: "",
-  userType: ""
+  userType: "",
+  loginSuccess : "",
 };
 
 export default (state = initialState, action) => {
