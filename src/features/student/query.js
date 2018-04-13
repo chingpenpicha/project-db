@@ -7,7 +7,7 @@ class MyQuery extends Component {
   }
 
   render() {
-    if(this.props.type == "leftSider"){
+    if(this.props.type == "leftSider" && this.props.studentCode == ""){
       this.props.setField("studentName","Test Yoh");
       this.props.setField("studentCode","121351");
       this.props.setField("stendentFaculty","SiamCenter");

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SET_FIELD = "SET_FIELD";
+const SET_FIELDL = "SET_FIELDL";
 const SET_TYPE = "SET_TYPE";
 
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_FIELD:
+    case SET_FIELDL:
       return {
         ...state,
         [action.key]: action.value
@@ -27,8 +27,8 @@ export default (state = initialState, action) => {
   }
 };
 
-export const setField = (key, value) => ({
-  type: SET_FIELD,
+export const setFieldL = (key, value) => ({
+  type: SET_FIELDL,
   key,
   value
 });

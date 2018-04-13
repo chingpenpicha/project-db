@@ -15,15 +15,20 @@ class MyButton extends Component {
     var parent = this;
     //use this.props.userId to query password
     //and check condition if id and password match.
+    console.log("in");
     axios.post('http://localhost:8000/student_reg', {
     username: this.props.props.userId,
     password: this.props.props.password
   })
   .then(function (response) {
     console.log(parent);
-    if(response.data.result == "success"){
+    if(response.data.valid == "true"){
       console.log("in");
       parent.props.props.onChange("loginSuccess", "true")
+      parent.props.props.setField("FName",response.data.FName)
+      parent.props.props.setField("LName",response.data.LName)
+      parent.props.props.setField("studentFaculty",response.data.faculty)
+      parent.props.props.setField("studentCode",this.props.props.userId)
     }
   })
   .catch(function (error) {
