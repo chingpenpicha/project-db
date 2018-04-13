@@ -15,6 +15,12 @@ class MyButton extends Component {
     var parent = this;
     //use this.props.userId to query password
     //and check condition if id and password match.
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    if (this.props.userName == "Boss") {
+=======
+>>>>>>> Stashed changes
     axios.post('http://localhost:8000/student_reg', {
     username: this.props.props.userId,
     password: this.props.props.password
@@ -32,6 +38,10 @@ class MyButton extends Component {
 
   console.log(check);
     if (this.props.props.loginSuccess == "true") {
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
       return (
         <Button
           type="primary"
@@ -45,9 +55,7 @@ class MyButton extends Component {
             marginTop: 10
           }}
         >
-          <Link to={"/student/" + this.props.studentName + "/home"}>
-            Log in
-          </Link>
+          <Link to={"/teacher/" + this.props.userName + "/home"}>Log in</Link>
         </Button>
       );
     } else {

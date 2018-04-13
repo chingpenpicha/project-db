@@ -53,7 +53,15 @@ export default props => (
           />
         </FormItem>
         <FormItem>
+<<<<<<< Updated upstream
           <MyButton props = {props} />
+=======
+<<<<<<< HEAD
+          <MyButton userName={props.userId} />
+=======
+          <MyButton props = {props} />
+>>>>>>> origin/master
+>>>>>>> Stashed changes
         </FormItem>
       </Form>
     </div>

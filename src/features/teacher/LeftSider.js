@@ -5,7 +5,6 @@ import { setField } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 import { width } from "window-size";
-import MyQuery from "./query";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -24,7 +23,6 @@ const enhance = connect(
 
 const LeftSider = props => (
   <Layout>
-    <MyQuery setField = {(key,value) => props.setField(key,value)} type = "leftSider"/>
     <Sider
       style={{ overflow: "auto", height: "100vh", position: "fixed", left: 0 }}
     >
@@ -35,31 +33,21 @@ const LeftSider = props => (
       />
       <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
         <Menu.Item key="1">
-          <Link to={"/student/" + props.userId + "/normalRegister"} />
-          <Icon type="user" />
-          <span className="nav-text">ลงทะเบียนเรียน</span>
+          <Link to={"/teacher/" + props.userId + "/configGrade"} />
+          <Icon type="edit" />
+          <span className="nav-text">แก้ไขเกรดในวิชาที่สอน</span>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link to={"/student/" + props.userId + "/addSubWith"} />
-          <Icon type="edit" />
-          <span className="nav-text">เพิ่ม/ลด</span>
+          <Link to={"/teacher/" + props.userId + "/studentGrade"} />
+          <Icon type="user" />
+          <span className="nav-text">ผลการเรียนของนิสิต</span>
         </Menu.Item>
         <Menu.Item key="3">
-          <Link to={"/student/" + props.userId + "/gradeResult"} />
-          <Icon type="profile" />
-          <span className="nav-text">ผลการเรียน</span>
-        </Menu.Item>
-        <Menu.Item key="4">
-          <Link to={"/student/" + props.userId + "/documentRequest"} />
-          <Icon type="form" />
-          <span className="nav-text">ขอใบคำร้อง</span>
-        </Menu.Item>
-        <Menu.Item key="5">
-          <Link to={"/student/" + props.userId + "/searchTable"} />
+          <Link to={"/teacher/" + props.userId + "/searchTable"} />
           <Icon type="table" />
           <span className="nav-text">ค้นหาตารางเรียน</span>
         </Menu.Item>
-        <Menu.Item key="6">
+        <Menu.Item key="4">
           <Link to="/" />
           <Icon type="logout" />
           <span className="nav-text">Logout</span>
