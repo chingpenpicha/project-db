@@ -6,12 +6,27 @@ import { Layout, Input, Table, Row, Col, Button, Form, Popconfirm } from "antd";
 const FormItem = Form.FormItem;
 const { Header, Footer } = Layout;
 
+//var cr0={courseId : "", courseName : "", section : "",credit : "" };
+
+
 const enhance = connect(
   state => ({
     courseRegist: state.student.courseRegist,
     studentName: state.student.studentName,
     studentCode: state.student.studentCode,
-    studentFaculty: state.student.studentFaculty
+    studentFaculty: state.student.studentFaculty,
+    courseRegistTmp : [
+      {courseId : state.student.ci0,courseName : state.student.cn0,section : state.student.st0,credit : state.student.cd0},
+      {courseId : state.student.ci1,courseName : state.student.cn1,section : state.student.st1,credit : state.student.cd1},
+      {courseId : state.student.ci2,courseName : state.student.cn2,section : state.student.st2,credit : state.student.cd2},
+      {courseId : state.student.ci3,courseName : state.student.cn3,section : state.student.st3,credit : state.student.cd3},
+      {courseId : state.student.ci4,courseName : state.student.cn4,section : state.student.st4,credit : state.student.cd4},
+      {courseId : state.student.ci5,courseName : state.student.cn5,section : state.student.st5,credit : state.student.cd5},
+      {courseId : state.student.ci6,courseName : state.student.cn6,section : state.student.st6,credit : state.student.cd6},
+      {courseId : state.student.ci7,courseName : state.student.cn7,section : state.student.st7,credit : state.student.cd7},
+      {courseId : state.student.ci8,courseName : state.student.cn8,section : state.student.st8,credit : state.student.cd8},
+      {courseId : state.student.ci9,courseName : state.student.cn9,section : state.student.st9,credit : state.student.cd9},
+    ]
   }),
   { setField }
 );
@@ -139,19 +154,44 @@ const registerPage = props => (
           </Col>
         </Row>
 
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
+        <WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci0",value)}
+        onChangeSection = {(value) => props.setField("st0",value)}
+        />
+        <WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci1",value)}
+        onChangeSection = {(value) => props.setField("st1",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci2",value)}
+        onChangeSection = {(value) => props.setField("st2",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci3",value)}
+        onChangeSection = {(value) => props.setField("st3",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci4",value)}
+        onChangeSection = {(value) => props.setField("st4",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci5",value)}
+        onChangeSection = {(value) => props.setField("st5",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci6",value)}
+        onChangeSection = {(value) => props.setField("st6",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci7",value)}
+        onChangeSection = {(value) => props.setField("st7",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci8",value)}
+        onChangeSection = {(value) => props.setField("st8",value)}
+        /><WrappedDynamicRule
+        onChangeCourseId = {(value) => props.setField("ci9",value)}
+        onChangeSection = {(value) => props.setField("st9",value)}
+        />
+
+
 
         <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
-          <Button style={{ width: 100 }} type="primary" htmlType="submit">
+          <Button style={{ width: 100 }} type="primary" htmlType="submit"
+          onClick ={e => props.setField("courseRegist",props.courseRegistTmp)}>
             Save
           </Button>
           <Popconfirm

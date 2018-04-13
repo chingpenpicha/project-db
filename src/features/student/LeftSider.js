@@ -5,6 +5,7 @@ import { setField } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 import { width } from "window-size";
+import MyQuery from "./query";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -23,6 +24,7 @@ const enhance = connect(
 
 const LeftSider = props => (
   <Layout>
+    <MyQuery setField = {(key,value) => props.setField(key,value)} type = "leftSider"/>
     <Sider
       style={{ overflow: "auto", height: "100vh", position: "fixed", left: 0 }}
     >

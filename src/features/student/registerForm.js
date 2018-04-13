@@ -10,6 +10,20 @@ class DynamicRule extends React.Component {
       }
     });
   };
+  onChangeCourseId(state,value){
+    console.log(value);
+    return{
+      ...state,
+      courseId : value
+    };
+  }
+
+  onChangeSection(state,value){
+    return{
+      ...state,
+      section : value
+    };
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -24,13 +38,13 @@ class DynamicRule extends React.Component {
                   message: "Please input Course ID"
                 }
               ]
-            })(<Input />)}
+            })(<Input onChange={e => this.props.onChangeCourseId(e.target.value)} />)}
           </FormItem>
         </Col>
         <Col span={6} key={2}>
-          <FormItem>
-            <Input />
-          </FormItem>
+          <div>
+            เดี๋ยวค่อย
+          </div>
         </Col>
         <Col span={6} key={3}>
           <FormItem>
@@ -41,7 +55,7 @@ class DynamicRule extends React.Component {
                   message: "Please input section"
                 }
               ]
-            })(<Input />)}
+            })(<Input onChange={e => this.props.onChangeSection(e.target.value)} />)}
           </FormItem>
         </Col>
       </Row>

@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Layout } from "antd";
+import MyQuery from "./query";
 
 import GradeTable from "./GradeTable";
+import {setField} from "./reducer"
 
 const { Header } = Layout;
 
@@ -11,13 +13,15 @@ const enhance = connect(
     courseRegist: state.student.courseRegist,
     studentName: state.student.studentName,
     studentCode: state.student.studentCode,
-    studentFaculty: state.student.studentFaculty
+    studentFaculty: state.student.studentFaculty,
+    gradeResult : state.student.gradeResult
   }),
-  {}
+  {setField}
 );
 
 const GradeResultPage = props => (
   <Layout style={{ background: "#fff" }}>
+  <MyQuery setField = {(key,value) => props.setField(key,value)} type = "gradeResult"/>
     <Header
       style={{
         background: "#fff",
@@ -35,8 +39,8 @@ const GradeResultPage = props => (
         padding: 10
       }}
     >
-      <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 1" />
-      <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 2" />
+      <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 1" gradeResult = {props.gradeResult} />
+      <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 2" gradeResult = {props.gradeResult} />
     </Layout>
   </Layout>
 );
