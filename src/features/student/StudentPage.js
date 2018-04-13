@@ -1,12 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setField } from "./reducer";
-import { Layout, Menu, Icon } from "antd";
+import { Layout } from "antd";
 
-import { Link } from "react-router-dom";
-import { width } from "window-size";
-
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Footer } = Layout;
 //import "./Search.css";
 
 const enhance = connect(state => ({}), { setField });
@@ -20,7 +17,14 @@ const StudentPage = props => (
           textAlign: "center"
         }}
       >
-        ... ยินดีต้อนรับสู่ระบบ Reg Chula Chula ...
+        <h1
+          style={{
+            marginTop: 300,
+            textAlign: "center"
+          }}
+        >
+          ... ยินดีต้อนรับสู่ระบบ Reg Chula Chula ...
+        </h1>
       </div>
 
       <Footer

@@ -2,8 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { setField } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
-import { Layout, Input, Table, Row, Col, Button, Form, Popconfirm } from "antd";
-const FormItem = Form.FormItem;
+import { Layout, Table, Row, Col, Button, Form, Popconfirm } from "antd";
 const { Header, Footer } = Layout;
 
 const enhance = connect(

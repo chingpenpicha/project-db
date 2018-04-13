@@ -15,33 +15,24 @@ class MyButton extends Component {
     var parent = this;
     //use this.props.userId to query password
     //and check condition if id and password match.
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    if (this.props.userName == "Boss") {
-=======
->>>>>>> Stashed changes
-    axios.post('http://localhost:8000/student_reg', {
-    username: this.props.props.userId,
-    password: this.props.props.password
-  })
-  .then(function (response) {
-    console.log(parent);
-    if(response.data.result == "success"){
-      console.log("in");
-      parent.props.props.onChange("loginSuccess", "true")
-    }
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    axios
+      .post("http://localhost:8000/student_reg", {
+        username: this.props.props.userId,
+        password: this.props.props.password
+      })
+      .then(function(response) {
+        console.log(parent);
+        if (response.data.result == "success") {
+          console.log("in");
+          parent.props.props.onChange("loginSuccess", "true");
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
 
-  console.log(check);
+    console.log(check);
     if (this.props.props.loginSuccess == "true") {
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
       return (
         <Button
           type="primary"

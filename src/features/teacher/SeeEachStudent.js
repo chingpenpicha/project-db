@@ -1,43 +1,7 @@
 import React from "react";
 import GradeTable from "./GradeTable";
-import { Layout, Table } from "antd";
-const { Header, Footer } = Layout;
-
-const columns = [
-  {
-    title: "CourseId",
-    dataIndex: "courseId"
-  },
-  {
-    title: "CourseName",
-    dataIndex: "courseName"
-  },
-  {
-    title: "Section",
-    dataIndex: "section"
-  },
-  {
-    title: "Credit",
-    dataIndex: "credit"
-  }
-];
-
-const data = [
-  {
-    key: "1",
-    courseId: "John Brown",
-    courseName: 32,
-    section: "New York No. 1 Lake Park",
-    credit: "3"
-  },
-  {
-    key: "2",
-    courseId: "Jim Green",
-    courseName: 42,
-    section: "London No. 1 Lake Park",
-    credit: "3"
-  }
-];
+import { Layout } from "antd";
+const { Header } = Layout;
 
 export default props => (
   <Layout style={{ background: "#fff" }}>

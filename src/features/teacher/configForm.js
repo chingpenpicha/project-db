@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Col, Row } from "antd";
+import { Form, Input, Col, Row } from "antd";
 const FormItem = Form.Item;
 
 class DynamicRule extends React.Component {
@@ -17,10 +17,10 @@ class DynamicRule extends React.Component {
     return (
       <Row gutter={24}>
         <Col span={6} key={1}>
-          <FormItem>student ID</FormItem>
+          <FormItem>{sid}</FormItem>
         </Col>
         <Col span={6} key={2}>
-          <FormItem>Student Name</FormItem>
+          <FormItem>{sname}}</FormItem>
         </Col>
         <Col span={6} key={3}>
           <FormItem>

@@ -4,9 +4,8 @@ import "./LeftSider.css";
 import { setField } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
-import { width } from "window-size";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Sider } = Layout;
 
 //import "./Search.css";
 

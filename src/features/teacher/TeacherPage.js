@@ -1,12 +1,10 @@
 import React from "react";
-import { Layout, Menu, Icon } from "antd";
+import { Layout } from "antd";
 
 import { connect } from "react-redux";
 import {} from "./reducer";
 
-import { Link } from "react-router-dom";
-
-const { Header, Content, Footer, Sider } = Layout;
+const { Footer } = Layout;
 //import "./Search.css";
 
 const enhance = connect(state => state, {});

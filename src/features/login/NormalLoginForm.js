@@ -1,10 +1,8 @@
 import React from "react";
 import "./NormalLoginForm.css";
 
-import { Link } from "react-router-dom";
-
 import { Form, Icon, Input, Radio } from "antd";
-import { width } from "window-size";
+
 import MyButton from "./button";
 
 const FormItem = Form.Item;
@@ -53,15 +51,7 @@ export default props => (
           />
         </FormItem>
         <FormItem>
-<<<<<<< Updated upstream
-          <MyButton props = {props} />
-=======
-<<<<<<< HEAD
-          <MyButton userName={props.userId} />
-=======
-          <MyButton props = {props} />
->>>>>>> origin/master
->>>>>>> Stashed changes
+          <MyButton props={props} />
         </FormItem>
       </Form>
     </div>
