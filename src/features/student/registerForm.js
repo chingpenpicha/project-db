@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Col, Row } from "antd";
+import { Form, Input, Col, Row } from "antd";
 const FormItem = Form.Item;
 
 class DynamicRule extends React.Component {
@@ -10,18 +10,18 @@ class DynamicRule extends React.Component {
       }
     });
   };
-  onChangeCourseId(state,value){
+  onChangeCourseId(state, value) {
     console.log(value);
-    return{
+    return {
       ...state,
-      courseId : value
+      courseId: value
     };
   }
 
-  onChangeSection(state,value){
-    return{
+  onChangeSection(state, value) {
+    return {
       ...state,
-      section : value
+      section: value
     };
   }
 
@@ -38,13 +38,15 @@ class DynamicRule extends React.Component {
                   message: "Please input Course ID"
                 }
               ]
-            })(<Input onChange={e => this.props.onChangeCourseId(e.target.value)} />)}
+            })(
+              <Input
+                onChange={e => this.props.onChangeCourseId(e.target.value)}
+              />
+            )}
           </FormItem>
         </Col>
         <Col span={6} key={2}>
-          <div>
-            เดี๋ยวค่อย
-          </div>
+          <div>เดี๋ยวค่อย</div>
         </Col>
         <Col span={6} key={3}>
           <FormItem>
@@ -55,7 +57,11 @@ class DynamicRule extends React.Component {
                   message: "Please input section"
                 }
               ]
-            })(<Input onChange={e => this.props.onChangeSection(e.target.value)} />)}
+            })(
+              <Input
+                onChange={e => this.props.onChangeSection(e.target.value)}
+              />
+            )}
           </FormItem>
         </Col>
       </Row>

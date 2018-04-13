@@ -1,14 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
-import { setField } from "./reducer";
 import { Layout } from "antd";
 
-const { Header, Footer } = Layout;
+import { connect } from "react-redux";
+import {} from "./reducer";
+
+const { Footer } = Layout;
 //import "./Search.css";
 
-const enhance = connect(state => ({}), { setField });
+const enhance = connect(state => state, {});
 
-const StudentPage = props => (
+const TeacherPage = props => (
   <Layout>
     <Layout style={{ marginLeft: 200 }}>
       <div
@@ -17,14 +18,7 @@ const StudentPage = props => (
           textAlign: "center"
         }}
       >
-        <h1
-          style={{
-            marginTop: 300,
-            textAlign: "center"
-          }}
-        >
-          ... ยินดีต้อนรับสู่ระบบ Reg Chula Chula ...
-        </h1>
+        ... ยินดีต้อนรับสู่ระบบ Reg Chula Chula ...
       </div>
 
       <Footer
@@ -41,4 +35,4 @@ const StudentPage = props => (
   </Layout>
 );
 
-export default enhance(StudentPage);
+export default enhance(TeacherPage);
