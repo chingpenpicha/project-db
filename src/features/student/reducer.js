@@ -2,12 +2,13 @@ import axios from "axios";
 
 const SET_FIELD = "SET_FIELD";
 const CONFIRM_REGIST = "CONFIRM_REGIST"
+const GET_REGIST_FULFILLED = "GET_REGIST_FULFILLED"
 const GET_REGIST = "GET_REGIST"
 
 const initialState = {
-  courseRegist: [{test0 : "test"},{test1 : "test"}],
+  courseRegist: [{CID : "-"}],
   courseRegistD: [{
-    courseId : "-", courseName : "", section : "", credit: ""
+    CID : "-", courseName : "", section : "", credit: ""
   }],
   ci0 : "",st0 : "",
   ci1 : "",st1 : "",
@@ -37,7 +38,7 @@ export default (state = initialState ,action) => {
         ...state
       };
 
-    case GET_REGIST:
+    case GET_REGIST_FULFILLED:
      return {
        ...state,
        courseRegist : action.payload
@@ -57,29 +58,25 @@ export const setField = (key, value) => ({
 export const confirmRegist = (courseRegist,userId) => ({
   type: CONFIRM_REGIST,
   courseRegist,
-  payload: axios.get('http://localhost:8000/saveReg',{
-    params : {
+  payload: axios.post('http://localhost:8000/saveReg',{
         courseRegist : courseRegist,
         studentId : userId,
-        test : "" }
     })
     .then(function(response) {
+      console.log("HERERERERE")
+      console.log(userId);
       console.log(response);
     })
 });
 
-export const getRegist = (courseRegist,userId) => ({
+export const getRegist = (userId) => ({
   type: GET_REGIST,
-  courseRegist,
-  payload: axios
-    .get('http://localhost:8000/getRegSubject',{
-      params : {
-        sid : userId
-      }
+  payload: axios.post('http://localhost:8000/getRegSubject',{
+        studentId : userId,
     })
     .then(function(response) {
-      console.log("NEXT")
-      console.log(response);
-      return response.courseRegist
+      console.log("HERERERERERERE")
+      console.log(response.data.courseRegist)
+      return response.data.courseRegist
     })
 });

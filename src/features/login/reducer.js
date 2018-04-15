@@ -6,10 +6,10 @@ const LOGIN_VERIFY = "LOGIN_VERIFY";
 const LOGIN_VERIFY_FULFILLED = "LOGIN_VERIFY_FULFILLED";
 
 const initialState = {
-  userId: "",
-  password: "",
-  userType: "",
-  loginSuccess : "",
+  userId: '',
+  password: '',
+  userType: '',
+  loginSuccess : '',
   userInformation:[],
 };
 
@@ -55,6 +55,7 @@ export const loginVerify = (username,password) => ({
     password: password
   })
     .then(function (response) {
+      console.log(username)
       if(response.data.valid == "true"){
         return response.data;
       }else{

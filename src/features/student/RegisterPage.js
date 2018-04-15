@@ -8,33 +8,33 @@ import { bindActionCreators } from 'redux'
 const FormItem = Form.FormItem;
 const { Header, Footer } = Layout;
 
-//var cr0={courseId : "", courseName : "", section : "",credit : "" };
+//var cr0={CID : "", CABname : "", secnumber : "",credit : "" };
 
 
 const mapStateToProps = (state) => {
     return {
-      courseRegist: Object.assign(state.student.courseRegist),
-      FName: Object.assign(state.login.userInformation.Fname),
-      LName: Object.assign(state.login.userInformation.Lname),
-      userId: Object.assign(state.login.userId),
-      studentFaculty: Object.assign(state.login.userInformation.faculty),
-      courseRegistD : Object.assign(state.student.courseRegistD),
+      courseRegist: state.student.courseRegist,
+      FName: state.login.userInformation.Fname,
+      LName: state.login.userInformation.Lname,
+      userId: state.login.userId,
+      studentFaculty: state.login.userInformation.faculty,
+      courseRegistD : state.student.courseRegistD,
       courseRegistTmp : [
-        {courseId : Object.assign(state.student.ci0), section : Object.assign(state.student.st0)},
-        {courseId : Object.assign(state.student.ci1), section : Object.assign(state.student.st1)},
-        {courseId : Object.assign(state.student.ci2), section : Object.assign(state.student.st2)},
-        {courseId : Object.assign(state.student.ci3), section : Object.assign(state.student.st3)},
-        {courseId : Object.assign(state.student.ci4), section : Object.assign(state.student.st4)},
-        {courseId : Object.assign(state.student.ci5), section : Object.assign(state.student.st5)},
-        {courseId : Object.assign(state.student.ci6), section : Object.assign(state.student.st6)},
-        {courseId : Object.assign(state.student.ci7), section : Object.assign(state.student.st7)},
-        {courseId : Object.assign(state.student.ci8), section : Object.assign(state.student.st8)},
-        {courseId : Object.assign(state.student.ci9), section : Object.assign(state.student.st9)}
+        {CID : state.student.ci0, secnumber : state.student.st0},
+        {CID : state.student.ci1, secnumber : state.student.st1},
+        {CID : state.student.ci2, secnumber : state.student.st2},
+        {CID : state.student.ci3, secnumber : state.student.st3},
+        {CID : state.student.ci4, secnumber : state.student.st4},
+        {CID : state.student.ci5, secnumber : state.student.st5},
+        {CID : state.student.ci6, secnumber : state.student.st6},
+        {CID : state.student.ci7, secnumber : state.student.st7},
+        {CID : state.student.ci8, secnumber : state.student.st8},
+        {CID : state.student.ci9, secnumber : state.student.st9}
       ],
       courseRegistDTmp : [
-        {courseId : "te", courseName : "12", section : "34", credit : "56"},
-        {courseId : "tes", courseName : "12", section : "34", credit : "56"},
-        {courseId : "tea", courseName : "12", section : "34", credit : "56"}
+        {CID : "te", CABname : "12", secnumber : "34", credit : "56"},
+        {CID : "tes", CABname : "12", secnumber : "34", credit : "56"},
+        {CID : "tea", CABname : "12", secnumber : "34", credit : "56"}
       ]
     }
 }
@@ -50,15 +50,15 @@ const mapDispatchToProps = (dispatch, props) => {
 const columns = [
   {
     title: "CourseId",
-    dataIndex: "courseId"
+    dataIndex: "CID"
   },
   {
     title: "CourseName",
-    dataIndex: "courseName"
+    dataIndex: "CABname"
   },
   {
     title: "Section",
-    dataIndex: "section"
+    dataIndex: "secnumber"
   },
   {
     title: "Credit",
@@ -76,7 +76,7 @@ class registering extends React.Component {
 
   render() {
     console.log(this.props.courseRegistTmp)
-    if(this.props.courseRegistD[0].courseId != "-"){
+    if(this.props.courseRegist[0].CID != "-"){
      console.log("this.props.userId");
       return (
         <Layout style={{ background: "#fff" }}>
@@ -102,8 +102,8 @@ class registering extends React.Component {
                 <h3>ปีการศึกษา 2555 เทอม 2</h3>
                 <Table
                   columns={columns}
-                  dataSource={this.props.courseRegistD}
-                  rowKey = "courseId"
+                  dataSource={this.props.courseRegist}
+                  rowKey = "CID"
                   size="middle"
                   pagination={false}
                 />
@@ -152,41 +152,41 @@ class registering extends React.Component {
                   <b> Course Name</b>
                 </Col>
                 <Col span={4} style={{ textAlign: "Left" }}>
-                  <b> Section</b>
+                  <b> secnumber</b>
                 </Col>
               </Row>
 
               <WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci0",value)}
-              onChangeSection = {(value) => this.props.setField("st0",value)}
+              onChangeCID = {(value) => this.props.setField("ci0",value)}
+              onChangesecnumber = {(value) => this.props.setField("st0",value)}
               />
               <WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci1",value)}
-              onChangeSection = {(value) => this.props.setField("st1",value)}
+              onChangeCID = {(value) => this.props.setField("ci1",value)}
+              onChangesecnumber = {(value) => this.props.setField("st1",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci2",value)}
-              onChangeSection = {(value) => this.props.setField("st2",value)}
+              onChangeCID = {(value) => this.props.setField("ci2",value)}
+              onChangesecnumber = {(value) => this.props.setField("st2",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci3",value)}
-              onChangeSection = {(value) => this.props.setField("st3",value)}
+              onChangeCID = {(value) => this.props.setField("ci3",value)}
+              onChangesecnumber = {(value) => this.props.setField("st3",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci4",value)}
-              onChangeSection = {(value) => this.props.setField("st4",value)}
+              onChangeCID = {(value) => this.props.setField("ci4",value)}
+              onChangesecnumber = {(value) => this.props.setField("st4",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci5",value)}
-              onChangeSection = {(value) => this.props.setField("st5",value)}
+              onChangeCID = {(value) => this.props.setField("ci5",value)}
+              onChangesecnumber = {(value) => this.props.setField("st5",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci6",value)}
-              onChangeSection = {(value) => this.props.setField("st6",value)}
+              onChangeCID = {(value) => this.props.setField("ci6",value)}
+              onChangesecnumber = {(value) => this.props.setField("st6",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci7",value)}
-              onChangeSection = {(value) => this.props.setField("st7",value)}
+              onChangeCID = {(value) => this.props.setField("ci7",value)}
+              onChangesecnumber = {(value) => this.props.setField("st7",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci8",value)}
-              onChangeSection = {(value) => this.props.setField("st8",value)}
+              onChangeCID = {(value) => this.props.setField("ci8",value)}
+              onChangesecnumber = {(value) => this.props.setField("st8",value)}
               /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci9",value)}
-              onChangeSection = {(value) => this.props.setField("st9",value)}
+              onChangeCID = {(value) => this.props.setField("ci9",value)}
+              onChangesecnumber = {(value) => this.props.setField("st9",value)}
               />
 
 

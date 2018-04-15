@@ -10,11 +10,11 @@ import { bindActionCreators } from 'redux'
 const { Header, Content, Footer, Sider } = Layout;
 const mapStateToProps = (state) => {
   return {
-    courseRegist: Object.assign(state.student.courseRegist,state),
-    FName: Object.assign(state.login.userInformation.Fname,state),
-    LName: Object.assign(state.login.userInformation.Lname,state),
-    userId: Object.assign(state.login.userId,state),
-    studentFaculty: Object.assign(state.login.userInformation.faculty,state),
+    courseRegist: state.student.courseRegist,state,
+    FName: state.login.userInformation.Fname,state,
+    LName: state.login.userInformation.Lname,state,
+    userId: state.login.userId,state,
+    studentFaculty: state.login.userInformation.faculty,state,
 
   }
 }
