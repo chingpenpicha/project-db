@@ -45,7 +45,7 @@ const SeeStudentGrade = props => (
         paddingRight: 100
       }}
     >
-      <h3>รายชื่อนักเรียนในที่ปรึกษา</h3>
+      <h3>รายชื่อนิสิตในที่ปรึกษา</h3>
       <List
         style={{ width: "60%", marginLeft: 20 }}
         itemLayout="horizontal"

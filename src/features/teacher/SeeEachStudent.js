@@ -13,7 +13,7 @@ export default props => (
         marginTop: 20
       }}
     >
-      <h1>ผลการศึกษาของนักเรียน</h1>
+      <h1>ผลการศึกษาของนิสิต</h1>
     </Header>
 
     <Layout
@@ -24,7 +24,7 @@ export default props => (
         padding: 10
       }}
     >
-      <h3>ของนักเรียนชื่อ ABCD EFG รหัส 5831023921 </h3>
+      <h3>ของนิสิตชื่อ ABCD EFG รหัส 5831023921 </h3>
       <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 1" />
       <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 2" />
     </Layout>
