@@ -2,6 +2,7 @@ import axios from "axios";
 
 const SET_FIELD = "SET_FIELD";
 const CONFIRM_REGIST = "CONFIRM_REGIST"
+const GET_REGIST = "GET_REGIST"
 
 const initialState = {
   courseRegist: [{test0 : "test"},{test1 : "test"}],
@@ -18,16 +19,12 @@ const initialState = {
   ci7 : "",st7 : "",
   ci8 : "",st8 : "",
   ci9 : "",st9 : "",
-  menuSelect: "",
-  FName: "",
-  LName: "",
-  studentCode: "",
-  studentFaculty: "",
   loading: false,
   studentGrade : []
 };
 
 export default (state = initialState ,action) => {
+  console.log(action);
   switch (action.type) {
     case SET_FIELD:
       return {
@@ -37,10 +34,14 @@ export default (state = initialState ,action) => {
 
     case CONFIRM_REGIST:
       return {
-        ...state,
-        loading: false,
-        result: action.payload.map(e => e.urls.small)
+        ...state
       };
+
+    case GET_REGIST:
+     return {
+       ...state,
+       courseRegist : action.payload
+     }
 
     default:
       return state;
@@ -53,13 +54,32 @@ export const setField = (key, value) => ({
   value
 });
 
-export const confirmRegist = object => ({
+export const confirmRegist = (courseRegist,userId) => ({
   type: CONFIRM_REGIST,
-  object,
-  payload: axios
-    .get(
-    )
+  courseRegist,
+  payload: axios.get('http://localhost:8000/saveReg',{
+    params : {
+        courseRegist : courseRegist,
+        studentId : userId,
+        test : "" }
+    })
     .then(function(response) {
       console.log(response);
+    })
+});
+
+export const getRegist = (courseRegist,userId) => ({
+  type: GET_REGIST,
+  courseRegist,
+  payload: axios
+    .get('http://localhost:8000/getRegSubject',{
+      params : {
+        sid : userId
+      }
+    })
+    .then(function(response) {
+      console.log("NEXT")
+      console.log(response);
+      return response.courseRegist
     })
 });

@@ -11,11 +11,11 @@ const { Header, Content, Footer, Sider } = Layout;
 const mapStateToProps = (state) => {
   return {
     courseRegist: Object.assign(state.student.courseRegist,state),
-    FName: Object.assign(state.student.FName,state),
-    LName: Object.assign(state.student.LName,state),
-    studentCode: Object.assign(state.student.studentCode,state),
-    studentFaculty: Object.assign(state.student.studentFaculty,state),
-    studentCode : Object.assign(state.student.studentCode,state)
+    FName: Object.assign(state.login.userInformation.Fname,state),
+    LName: Object.assign(state.login.userInformation.Lname,state),
+    userId: Object.assign(state.login.userId,state),
+    studentFaculty: Object.assign(state.login.userInformation.faculty,state),
+
   }
 }
 
@@ -34,6 +34,7 @@ const mapStateToProps = (state) => {
     }
 
     render(){
+      console.log(this.props);
       return(
         <Layout>
           <MyQuery setField = {(key,value) => this.props.setField(key,value)} type = "leftSider"/>
@@ -93,7 +94,7 @@ const mapStateToProps = (state) => {
               }}
               >
                 <b>Faculty:</b> {this.props.studentFaculty}, <b>Name:</b>
-                  {this.props.Fname + " " + this.props.LName}, <b>ID:</b> {this.props.studentCode}
+                  {this.props.FName + " " + this.props.LName}, <b>ID:</b> {this.props.userId}
             </Header>
           </Layout>
         </Layout>

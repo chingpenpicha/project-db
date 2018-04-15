@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField } from "./reducer";
+import { setField, confirmRegist, getRegist } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
 import { Layout, Input, Table, Row, Col, Button, Form, Popconfirm } from "antd";
 import { bindActionCreators } from 'redux'
@@ -13,23 +13,23 @@ const { Header, Footer } = Layout;
 
 const mapStateToProps = (state) => {
     return {
-      courseRegist: Object.assign(state.student.courseRegist,state),
-      FName: Object.assign(state.student.FName,state),
-      LName: Object.assign(state.student.LName,state),
-      studentCode: Object.assign(state.student.studentCode,state),
-      studentFaculty: Object.assign(state.student.studentFaculty,state),
-      courseRegistD : Object.assign(state.student.courseRegistD,state),
+      courseRegist: Object.assign(state.student.courseRegist),
+      FName: Object.assign(state.login.userInformation.Fname),
+      LName: Object.assign(state.login.userInformation.Lname),
+      userId: Object.assign(state.login.userId),
+      studentFaculty: Object.assign(state.login.userInformation.faculty),
+      courseRegistD : Object.assign(state.student.courseRegistD),
       courseRegistTmp : [
-        {courseId : Object.assign(state.student.ci0,state), section : Object.assign(state.student.st0,state)},
-        {courseId : Object.assign(state.student.ci1,state), section : Object.assign(state.student.st1,state)},
-        {courseId : Object.assign(state.student.ci2,state), section : Object.assign(state.student.st2,state)},
-        {courseId : Object.assign(state.student.ci3,state), section : Object.assign(state.student.st3,state)},
-        {courseId : Object.assign(state.student.ci4,state), section : Object.assign(state.student.st4,state)},
-        {courseId : Object.assign(state.student.ci5,state), section : Object.assign(state.student.st5,state)},
-        {courseId : Object.assign(state.student.ci6,state), section : Object.assign(state.student.st6,state)},
-        {courseId : Object.assign(state.student.ci7,state), section : Object.assign(state.student.st7,state)},
-        {courseId : Object.assign(state.student.ci8,state), section : Object.assign(state.student.st8,state)},
-        {courseId : Object.assign(state.student.ci9,state), section : Object.assign(state.student.st9,state)}
+        {courseId : Object.assign(state.student.ci0), section : Object.assign(state.student.st0)},
+        {courseId : Object.assign(state.student.ci1), section : Object.assign(state.student.st1)},
+        {courseId : Object.assign(state.student.ci2), section : Object.assign(state.student.st2)},
+        {courseId : Object.assign(state.student.ci3), section : Object.assign(state.student.st3)},
+        {courseId : Object.assign(state.student.ci4), section : Object.assign(state.student.st4)},
+        {courseId : Object.assign(state.student.ci5), section : Object.assign(state.student.st5)},
+        {courseId : Object.assign(state.student.ci6), section : Object.assign(state.student.st6)},
+        {courseId : Object.assign(state.student.ci7), section : Object.assign(state.student.st7)},
+        {courseId : Object.assign(state.student.ci8), section : Object.assign(state.student.st8)},
+        {courseId : Object.assign(state.student.ci9), section : Object.assign(state.student.st9)}
       ],
       courseRegistDTmp : [
         {courseId : "te", courseName : "12", section : "34", credit : "56"},
@@ -41,7 +41,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        setField: bindActionCreators(setField, dispatch)
+        setField: bindActionCreators(setField, dispatch),
+        confirmRegist : bindActionCreators(confirmRegist, dispatch),
+        getRegist : bindActionCreators(getRegist,dispatch)
     }
 }
 
@@ -72,15 +74,10 @@ class registering extends React.Component {
       this.props = props;
   }
 
-  sunnai(){
-    console.log(this.props);
-    this.props.setField("courseRegistD",this.props.courseRegistDTmp)
-  }
-
   render() {
-
+    console.log(this.props.courseRegistTmp)
     if(this.props.courseRegistD[0].courseId != "-"){
-     console.log("KIN");
+     console.log("this.props.userId");
       return (
         <Layout style={{ background: "#fff" }}>
           <Header
@@ -196,11 +193,11 @@ class registering extends React.Component {
 
               <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
                 <Button style={{ width: 100 }} type="primary" htmlType="submit"
-                onClick ={e => this.props.setField("courseRegist",this.props.courseRegistTmp)}>
+                onClick ={e => this.props.getRegist(this.props.userId)}>
                   Save
                 </Button>
                 <Popconfirm
-                  onConfirm = {e => this.props.setField("courseRegistD",this.props.courseRegistDTmp)}
+                  onConfirm = {e => this.props.confirmRegist(this.props.courseRegistTmp,this.props.userId)}
                   placement="right"
                   title="เมื่อยืนยันแล้วจะไม่สามารถแก้ไขได้ ต้องการยืนยันใช่หรือไม่"
                   okText="ใช่"

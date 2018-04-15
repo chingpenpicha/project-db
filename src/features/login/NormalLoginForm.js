@@ -44,6 +44,7 @@ export default props => (
         <FormItem>
           <h3>Password</h3>
           <Input
+
             onChange={e => props.onChange("password", e.target.value)}
             prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
             type="password"

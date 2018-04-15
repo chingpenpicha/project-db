@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setFieldL, setType } from "./reducer";
-import { setField } from "E:/GitHub Respo/project-db/src/features/student/reducer"
+import { setField, setType, loginVerify } from "./reducer";
 import { Layout } from "antd";
+import { Link,Redirect } from "react-router-dom";
 import NormalLoginForm from "./NormalLoginForm";
 const { Sider, Content, Footer } = Layout;
 
@@ -15,7 +15,7 @@ const enhance = connect(
     userType: state.login.userType,
     loginSuccess : state.login.loginSuccess
   }),
-  { setFieldL, setType, setField }
+  { setType, setField, loginVerify }
 );
 
 const StudentPage = props => (
@@ -30,8 +30,9 @@ const StudentPage = props => (
           <div style={{ minHeight: 30 }} />
           <NormalLoginForm
             test={e => console.log(props)}
+            loginVerify = {(username,password) => props.loginVerify(username,password)}
             onChangeRadio={e => props.setType(e)}
-            onChange={(key, value) => props.setFieldL(key, value)}
+            onChange={(key, value) => props.setField(key, value)}
             setStudent = {(key,value) => props.setField(key, value)}
             userId={props.userId}
             password={props.password}

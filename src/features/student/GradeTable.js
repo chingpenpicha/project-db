@@ -41,7 +41,8 @@ class GradeTable extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    
+    console.log(props);
+
   }
 
 
