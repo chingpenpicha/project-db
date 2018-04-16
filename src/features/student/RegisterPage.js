@@ -1,62 +1,63 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField } from "./reducer";
+import { setField, confirmRegist, getRegist } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
 import { Layout, Input, Table, Row, Col, Button, Form, Popconfirm } from "antd";
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from "redux";
 
 const FormItem = Form.FormItem;
 const { Header, Footer } = Layout;
 
-//var cr0={courseId : "", courseName : "", section : "",credit : "" };
+//var cr0={CID : "", CABname : "", secnumber : "",credit : "" };
 
-
-const mapStateToProps = (state) => {
-    return {
-      courseRegist: Object.assign(state.student.courseRegist,state),
-      FName: Object.assign(state.student.FName,state),
-      LName: Object.assign(state.student.LName,state),
-      studentCode: Object.assign(state.student.studentCode,state),
-      studentFaculty: Object.assign(state.student.studentFaculty,state),
-      courseRegistD : Object.assign(state.student.courseRegistD,state),
-      courseRegistTmp : [
-        {courseId : Object.assign(state.student.ci0,state), section : Object.assign(state.student.st0,state)},
-        {courseId : Object.assign(state.student.ci1,state), section : Object.assign(state.student.st1,state)},
-        {courseId : Object.assign(state.student.ci2,state), section : Object.assign(state.student.st2,state)},
-        {courseId : Object.assign(state.student.ci3,state), section : Object.assign(state.student.st3,state)},
-        {courseId : Object.assign(state.student.ci4,state), section : Object.assign(state.student.st4,state)},
-        {courseId : Object.assign(state.student.ci5,state), section : Object.assign(state.student.st5,state)},
-        {courseId : Object.assign(state.student.ci6,state), section : Object.assign(state.student.st6,state)},
-        {courseId : Object.assign(state.student.ci7,state), section : Object.assign(state.student.st7,state)},
-        {courseId : Object.assign(state.student.ci8,state), section : Object.assign(state.student.st8,state)},
-        {courseId : Object.assign(state.student.ci9,state), section : Object.assign(state.student.st9,state)}
-      ],
-      courseRegistDTmp : [
-        {courseId : "te", courseName : "12", section : "34", credit : "56"},
-        {courseId : "tes", courseName : "12", section : "34", credit : "56"},
-        {courseId : "tea", courseName : "12", section : "34", credit : "56"}
-      ]
-    }
-}
+const mapStateToProps = state => {
+  return {
+    courseRegist: state.student.courseRegist,
+    FName: state.login.userInformation.Fname,
+    LName: state.login.userInformation.Lname,
+    userId: state.login.userId,
+    studentFaculty: state.login.userInformation.faculty,
+    courseRegistD: state.student.courseRegistD,
+    courseRegistTmp: [
+      { CID: state.student.ci0, secnumber: state.student.st0 },
+      { CID: state.student.ci1, secnumber: state.student.st1 },
+      { CID: state.student.ci2, secnumber: state.student.st2 },
+      { CID: state.student.ci3, secnumber: state.student.st3 },
+      { CID: state.student.ci4, secnumber: state.student.st4 },
+      { CID: state.student.ci5, secnumber: state.student.st5 },
+      { CID: state.student.ci6, secnumber: state.student.st6 },
+      { CID: state.student.ci7, secnumber: state.student.st7 },
+      { CID: state.student.ci8, secnumber: state.student.st8 },
+      { CID: state.student.ci9, secnumber: state.student.st9 }
+    ],
+    courseRegistDTmp: [
+      { CID: "te", CABname: "12", secnumber: "34", credit: "56" },
+      { CID: "tes", CABname: "12", secnumber: "34", credit: "56" },
+      { CID: "tea", CABname: "12", secnumber: "34", credit: "56" }
+    ]
+  };
+};
 
 const mapDispatchToProps = (dispatch, props) => {
-    return {
-        setField: bindActionCreators(setField, dispatch)
-    }
-}
+  return {
+    setField: bindActionCreators(setField, dispatch),
+    confirmRegist: bindActionCreators(confirmRegist, dispatch),
+    getRegist: bindActionCreators(getRegist, dispatch)
+  };
+};
 
 const columns = [
   {
     title: "CourseId",
-    dataIndex: "courseId"
+    dataIndex: "CID"
   },
   {
     title: "CourseName",
-    dataIndex: "courseName"
+    dataIndex: "CABname"
   },
   {
     title: "Section",
-    dataIndex: "section"
+    dataIndex: "secnumber"
   },
   {
     title: "Credit",
@@ -64,23 +65,17 @@ const columns = [
   }
 ];
 
-
 //อันนี้ไว้ตอนยืนยันแล้ว -OO-
 class registering extends React.Component {
   constructor(props) {
-      super(props);
-      this.props = props;
-  }
-
-  sunnai(){
-    console.log(this.props);
-    this.props.setField("courseRegistD",this.props.courseRegistDTmp)
+    super(props);
+    this.props = props;
   }
 
   render() {
-
-    if(this.props.courseRegistD[0].courseId != "-"){
-     console.log("KIN");
+    console.log(this.props.courseRegistTmp);
+    if (this.props.courseRegist[0].CID != "-") {
+      console.log("this.props.userId");
       return (
         <Layout style={{ background: "#fff" }}>
           <Header
@@ -90,30 +85,30 @@ class registering extends React.Component {
               marginLeft: 200,
               marginTop: 20
             }}
-            >
+          >
             <h1>ลงทะเบียนเรียน</h1>
-            </Header>
-              <Layout
-                style={{
-                  background: "#fff",
-                  marginLeft: 200,
-                  marginTop: 50,
-                  paddingLeft: 100,
-                  paddingRight: 100
-                }}
-              >
-                <h3>ปีการศึกษา 2555 เทอม 2</h3>
-                <Table
-                  columns={columns}
-                  dataSource={this.props.courseRegistD}
-                  rowKey = "courseId"
-                  size="middle"
-                  pagination={false}
-                />
-              </Layout>
+          </Header>
+          <Layout
+            style={{
+              background: "#fff",
+              marginLeft: 200,
+              marginTop: 50,
+              paddingLeft: 100,
+              paddingRight: 100
+            }}
+          >
+            <h3>ปีการศึกษา 2555 เทอม 2</h3>
+            <Table
+              columns={columns}
+              dataSource={this.props.courseRegist}
+              rowKey="CID"
+              size="middle"
+              pagination={false}
+            />
+          </Layout>
         </Layout>
       );
-    }else {
+    } else {
       return (
         <Layout style={{ background: "#fff" }}>
           <Header
@@ -155,59 +150,79 @@ class registering extends React.Component {
                   <b> Course Name</b>
                 </Col>
                 <Col span={4} style={{ textAlign: "Left" }}>
-                  <b> Section</b>
+                  <b> secnumber</b>
                 </Col>
               </Row>
 
               <WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci0",value)}
-              onChangeSection = {(value) => this.props.setField("st0",value)}
+                onChangeCID={value => this.props.setField("ci0", value)}
+                onChangesecnumber={value => this.props.setField("st0", value)}
               />
               <WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci1",value)}
-              onChangeSection = {(value) => this.props.setField("st1",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci2",value)}
-              onChangeSection = {(value) => this.props.setField("st2",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci3",value)}
-              onChangeSection = {(value) => this.props.setField("st3",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci4",value)}
-              onChangeSection = {(value) => this.props.setField("st4",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci5",value)}
-              onChangeSection = {(value) => this.props.setField("st5",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci6",value)}
-              onChangeSection = {(value) => this.props.setField("st6",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci7",value)}
-              onChangeSection = {(value) => this.props.setField("st7",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci8",value)}
-              onChangeSection = {(value) => this.props.setField("st8",value)}
-              /><WrappedDynamicRule
-              onChangeCourseId = {(value) => this.props.setField("ci9",value)}
-              onChangeSection = {(value) => this.props.setField("st9",value)}
+                onChangeCID={value => this.props.setField("ci1", value)}
+                onChangesecnumber={value => this.props.setField("st1", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci2", value)}
+                onChangesecnumber={value => this.props.setField("st2", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci3", value)}
+                onChangesecnumber={value => this.props.setField("st3", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci4", value)}
+                onChangesecnumber={value => this.props.setField("st4", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci5", value)}
+                onChangesecnumber={value => this.props.setField("st5", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci6", value)}
+                onChangesecnumber={value => this.props.setField("st6", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci7", value)}
+                onChangesecnumber={value => this.props.setField("st7", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci8", value)}
+                onChangesecnumber={value => this.props.setField("st8", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci9", value)}
+                onChangesecnumber={value => this.props.setField("st9", value)}
               />
 
-
-
-              <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
-                <Button style={{ width: 100 }} type="primary" htmlType="submit"
-                onClick ={e => this.props.setField("courseRegist",this.props.courseRegistTmp)}>
+              <div
+                style={{
+                  paddingRight: 200,
+                  marginTop: 10,
+                  textAlign: "center"
+                }}
+              >
+                <Button
+                  style={{ width: 100 }}
+                  type="primary"
+                  htmlType="submit"
+                  onClick={e => this.props.getRegist(this.props.userId)}
+                >
                   Save
                 </Button>
                 <Popconfirm
-                  onConfirm = {e => this.props.setField("courseRegistD",this.props.courseRegistDTmp)}
+                  onConfirm={e =>
+                    this.props.confirmRegist(
+                      this.props.courseRegistTmp,
+                      this.props.userId
+                    )
+                  }
                   placement="right"
                   title="เมื่อยืนยันแล้วจะไม่สามารถแก้ไขได้ ต้องการยืนยันใช่หรือไม่"
                   okText="ใช่"
                   cancelText="ไม่"
                 >
-                  <Button
-                    style={{ width: 100, marginLeft: 100 }} type="danger">
+                  <Button style={{ width: 100, marginLeft: 100 }} type="danger">
                     ยืนยัน
                   </Button>
                 </Popconfirm>
@@ -218,9 +233,9 @@ class registering extends React.Component {
             </Form>
           </Layout>
         </Layout>
-      )
+      );
     }
   }
 }
 
-export default connect (mapStateToProps,mapDispatchToProps)(registering);
+export default connect(mapStateToProps, mapDispatchToProps)(registering);

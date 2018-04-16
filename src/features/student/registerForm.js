@@ -10,18 +10,18 @@ class DynamicRule extends React.Component {
       }
     });
   };
-  onChangeCourseId(state, value) {
+  onChangeCID(state, value) {
     console.log(value);
     return {
       ...state,
-      courseId: value
+      CID: value
     };
   }
 
-  onChangeSection(state, value) {
+  onChangesecnumber(state, value) {
     return {
       ...state,
-      section: value
+      secnumber: value
     };
   }
 
@@ -31,7 +31,7 @@ class DynamicRule extends React.Component {
       <Row gutter={24}>
         <Col span={6} key={1}>
           <FormItem>
-            {getFieldDecorator("courseID", {
+            {getFieldDecorator("CID", {
               rules: [
                 {
                   required: true,
@@ -39,9 +39,7 @@ class DynamicRule extends React.Component {
                 }
               ]
             })(
-              <Input
-                onChange={e => this.props.onChangeCourseId(e.target.value)}
-              />
+              <Input onChange={e => this.props.onChangeCID(e.target.value)} />
             )}
           </FormItem>
         </Col>
@@ -50,7 +48,7 @@ class DynamicRule extends React.Component {
         </Col>
         <Col span={6} key={3}>
           <FormItem>
-            {getFieldDecorator("section", {
+            {getFieldDecorator("secnumber", {
               rules: [
                 {
                   required: true,
@@ -59,7 +57,7 @@ class DynamicRule extends React.Component {
               ]
             })(
               <Input
-                onChange={e => this.props.onChangeSection(e.target.value)}
+                onChange={e => this.props.onChangesecnumber(e.target.value)}
               />
             )}
           </FormItem>
