@@ -36,6 +36,7 @@ const StudentPage = props => (
             userId={props.userId}
             password={props.password}
             loginSuccess={props.loginSuccess}
+            userType={props.userType}
           />
         </div>
       </Content>

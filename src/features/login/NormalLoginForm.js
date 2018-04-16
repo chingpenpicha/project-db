@@ -15,17 +15,17 @@ export default props => (
       <h1> Log in As</h1>
       <RadioGroup
         onChange={e => props.onChangeRadio(e.target.value)}
-        defaultValue="Student"
+        defaultValue="student"
       >
         <RadioButton
           style={{ width: 200, textAlign: "center" }}
-          value="Student"
+          value="student"
         >
           Student
         </RadioButton>
         <RadioButton
           style={{ width: 200, textAlign: "center" }}
-          value="Teacher"
+          value="teacher"
         >
           Teacher
         </RadioButton>

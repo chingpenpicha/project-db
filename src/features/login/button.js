@@ -16,25 +16,58 @@ class MyButton extends Component {
     //use this.props.userId to query password
     //and check condition if id and password match.
     console.log("in");
-    axios.post('http://localhost:8000/student_reg', {
-    username: this.props.props.userId,
-    password: this.props.props.password
-  })
-  .then(function (response) {
-    console.log(parent);
-    if(response.data.valid == "true"){
-      console.log("in");
-      parent.props.props.onChange("loginSuccess", "true")
-      parent.props.props.setField("FName",response.data.FName)
-      parent.props.props.setField("LName",response.data.LName)
-      parent.props.props.setField("studentFaculty",response.data.faculty)
-      parent.props.props.setField("studentCode",this.props.props.userId)
-    }
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
 
+    if (parent.props.props.userType === "student") {
+      console.log("in student ");
+      axios
+        .post("http://localhost:8000/student_reg", {
+          username: this.props.props.userId,
+          password: this.props.props.password
+        })
+        .then(function(response) {
+          console.log(parent);
+          if (response.data.valid == "true") {
+            console.log("in");
+            parent.props.props.onChange("loginSuccess", "true");
+            parent.props.props.setField("FName", response.data.FName);
+            parent.props.props.setField("LName", response.data.LName);
+            parent.props.props.setField(
+              "studentFaculty",
+              response.data.faculty
+            );
+            parent.props.props.setField("studentCode", this.props.props.userId);
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    } else if (parent.props.props.userType === "teacher") {
+      console.log("in teacher ");
+      axios
+        .post("http://localhost:8000/teacher_reg", {
+          username: this.props.props.userId,
+          password: this.props.props.password
+        })
+        .then(function(response) {
+          console.log(parent);
+          if (response.data.valid == "true") {
+            console.log("in");
+            parent.props.props.onChange("loginSuccess", "true");
+            parent.props.props.setField("FName", response.data.FName);
+            parent.props.props.setField("LName", response.data.LName);
+            parent.props.props.setField(
+              "studentFaculty",
+              response.data.faculty
+            );
+            parent.props.props.setField("studentCode", this.props.props.userId);
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    } else {
+      console.log("easy as fuc");
+    }
     console.log(check);
     if (this.props.props.loginSuccess == "true") {
       return (
@@ -50,7 +83,17 @@ class MyButton extends Component {
             marginTop: 10
           }}
         >
-          <Link to={"/teacher/" + this.props.userName + "/home"}>Log in</Link>
+          <Link
+            to={
+              "/" +
+              this.props.props.userType +
+              "/" +
+              this.props.props.userName +
+              "/home"
+            }
+          >
+            Log in
+          </Link>
         </Button>
       );
     } else {
@@ -67,8 +110,7 @@ class MyButton extends Component {
             marginTop: 10
           }}
         >
-          {" "}
-          Log in{" "}
+          Log in
         </Button>
       );
     }
