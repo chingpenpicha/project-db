@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField, confirmRegist, getRegist } from "./reducer";
+import { setField, confirmRegist } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
 import { Layout, Input, Table, Row, Col, Button, Form, Popconfirm } from "antd";
 import { bindActionCreators } from 'redux'
@@ -16,9 +16,8 @@ const mapStateToProps = (state) => {
       courseRegist: state.student.courseRegist,
       FName: state.login.userInformation.Fname,
       LName: state.login.userInformation.Lname,
-      userId: state.login.userId,
+      userId: state.login.userIdTmp,
       studentFaculty: state.login.userInformation.faculty,
-      courseRegistD : state.student.courseRegistD,
       courseRegistTmp : [
         {CID : state.student.ci0, secnumber : state.student.st0},
         {CID : state.student.ci1, secnumber : state.student.st1},
@@ -30,11 +29,6 @@ const mapStateToProps = (state) => {
         {CID : state.student.ci7, secnumber : state.student.st7},
         {CID : state.student.ci8, secnumber : state.student.st8},
         {CID : state.student.ci9, secnumber : state.student.st9}
-      ],
-      courseRegistDTmp : [
-        {CID : "te", CABname : "12", secnumber : "34", credit : "56"},
-        {CID : "tes", CABname : "12", secnumber : "34", credit : "56"},
-        {CID : "tea", CABname : "12", secnumber : "34", credit : "56"}
       ]
     }
 }
@@ -43,7 +37,6 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         setField: bindActionCreators(setField, dispatch),
         confirmRegist : bindActionCreators(confirmRegist, dispatch),
-        getRegist : bindActionCreators(getRegist,dispatch)
     }
 }
 
@@ -75,9 +68,8 @@ class registering extends React.Component {
   }
 
   render() {
-    console.log(this.props.courseRegistTmp)
-    if(this.props.courseRegist[0].CID != "-"){
-     console.log("this.props.userId");
+
+    if(this.props.courseRegist != "-"){
       return (
         <Layout style={{ background: "#fff" }}>
           <Header
@@ -192,10 +184,6 @@ class registering extends React.Component {
 
 
               <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
-                <Button style={{ width: 100 }} type="primary" htmlType="submit"
-                onClick ={e => this.props.getRegist(this.props.userId)}>
-                  Save
-                </Button>
                 <Popconfirm
                   onConfirm = {e => this.props.confirmRegist(this.props.courseRegistTmp,this.props.userId)}
                   placement="right"

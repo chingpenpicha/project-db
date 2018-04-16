@@ -1,32 +1,45 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField } from "./reducer";
+import { setField,confirmRegist,dropCourse } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
+import { bindActionCreators } from 'redux'
 import { Layout, Table, Row, Col, Button, Form, Popconfirm } from "antd";
 const { Header, Footer } = Layout;
 
-const enhance = connect(
-  state => ({
+const mapStateToProps = (state) => {
+  return {
+    dropCourseVar : state.student.dropCourse,
     courseRegist: state.student.courseRegist,
     studentName: state.student.studentName,
     studentCode: state.student.studentCode,
-    studentFaculty: state.student.studentFaculty
-  }),
-  { setField }
-);
+    studentFaculty: state.student.studentFaculty,
+    userId: state.student.userIdTmp,
+    courseRegistTmp : [
+      {CID : state.student.ci0, secnumber : state.student.st0}
+    ]
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        setField: bindActionCreators(setField, dispatch),
+        confirmRegist : bindActionCreators(confirmRegist, dispatch),
+        dropCourse : bindActionCreators(dropCourse,dispatch),
+    }
+}
 
 const columns = [
   {
     title: "CourseId",
-    dataIndex: "courseId"
+    dataIndex: "CID"
   },
   {
     title: "CourseName",
-    dataIndex: "courseName"
+    dataIndex: "CABname"
   },
   {
     title: "Section",
-    dataIndex: "section"
+    dataIndex: "secnumber"
   },
   {
     title: "Credit",
@@ -34,136 +47,140 @@ const columns = [
   }
 ];
 
-const data = [
-  {
-    key: "1",
-    courseId: "John Brown",
-    courseName: 32,
-    section: "New York No. 1 Lake Park",
-    credit: "3"
-  },
-  {
-    key: "2",
-    courseId: "Jim Green",
-    courseName: 42,
-    section: "London No. 1 Lake Park",
-    credit: "3"
-  }
-];
-
 // rowSelection object indicates the need for row selection
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-  getCheckboxProps: record => ({
-    name: record.name
-  })
-};
+class AddSubWithPage extends React.Component {
+  constructor(props) {
+      super(props);
+      this.props = props;
+  }
 
-const AddSubWithPage = props => (
-  <Layout style={{ background: "#fff" }}>
-    <Header
-      style={{
-        background: "#fff",
-        textAlign: "center",
-        marginLeft: 200,
-        marginTop: 20
-      }}
-    >
-      <h1>เพิ่ม/ลด/ถอน</h1>
-    </Header>
-    <Layout
-      style={{
-        background: "#fff",
-        marginLeft: 200,
-        marginTop: 50,
-        paddingLeft: 200,
-        paddingRight: 200
-      }}
-    >
-      <h3>ลด/ถอน</h3>
-      <Table
-        rowSelection={rowSelection}
-        columns={columns}
-        dataSource={data}
-        size="middle"
-        pagination={false}
-      />
+  rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(
+        `selectedRowKeys: ${selectedRowKeys}`,
+        "selectedRows: ",
+        selectedRows
+      );
+      this.props.setField('dropCourse',selectedRows);
+    },
+    getCheckboxProps: record => ({
+      name: record.name
+    })
+  };
 
-      <div style={{ paddingRight: 100, marginTop: 10, textAlign: "center" }}>
-        <Button style={{ width: 100 }} type="primary" htmlType="submit">
-          ลด
-        </Button>
-        <Popconfirm
-          placement="right"
-          title="ต้องการยืนยันใช่หรือไม่"
-          okText="ใช่"
-          cancelText="ไม่"
-        >
-          <Button
-            style={{ width: 100, marginLeft: 100, marginTop: 20 }}
-            type="danger"
-          >
-            ถอน
-          </Button>
-        </Popconfirm>
-      </div>
-    </Layout>
+  render(){
+    var dataSource = this.props.courseRegist;
+    if(this.props.courseRegist == "-"){
+      dataSource = []
+    }
 
-    <Layout
-      style={{
-        background: "#fff",
-        marginLeft: 200,
-        marginTop: 50,
-        paddingLeft: 300,
-        paddingRight: 200
-      }}
-    >
-      <h3>เพิ่ม</h3>
-      <Form>
-        <Row
-          gutter={24}
+    return (
+      <Layout style={{ background: "#fff" }}>
+        <Header
           style={{
-            background: "#eee",
-            width: "77%",
-            height: 40,
-            textAlign: "left",
-            padding: 10,
-            marginBottom: 15
+            background: "#fff",
+            textAlign: "center",
+            marginLeft: 200,
+            marginTop: 20
           }}
         >
-          <Col span={8} style={{ textAlign: "Left" }}>
-            <b>Course ID</b>
-          </Col>
-          <Col span={8} style={{ textAlign: "Left" }}>
-            <b> Course Name</b>
-          </Col>
-          <Col span={4} style={{ textAlign: "Left" }}>
-            <b> Section</b>
-          </Col>
-        </Row>
-
-        <WrappedDynamicRule />
-        <WrappedDynamicRule />
-
-        <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
-          <Button style={{ width: 100 }} type="primary" htmlType="submit">
-            Save
-          </Button>
-
-          <Footer
-            style={{ marginLeft: 100, width: "100%", background: "#fff" }}
+          <h1>เพิ่ม/ลด/ถอน</h1>
+        </Header>
+        <Layout
+          style={{
+            background: "#fff",
+            marginLeft: 200,
+            marginTop: 50,
+            paddingLeft: 200,
+            paddingRight: 200
+          }}
+        >
+          <h3>ลด/ถอน</h3>
+          <Table
+            rowKey = "CID"
+            rowSelection= {this.rowSelection}
+            columns={columns}
+            dataSource={dataSource}
+            size="middle"
+            pagination={false}
           />
-        </div>
-      </Form>
-      <Footer style={{ marginLeft: 100, width: "100%", background: "#fff" }} />
-    </Layout>
-  </Layout>
-);
 
-export default enhance(AddSubWithPage);
+          <div style={{ paddingRight: 100, marginTop: 10, textAlign: "center" }}>
+            <Button style={{ width: 100 }} type="primary" htmlType="submit"
+              onClick = {e => this.props.dropCourse(this.props.userId,this.props.dropCourseVar)}
+            >
+              ลด
+            </Button>
+            <Popconfirm
+              placement="right"
+              title="ต้องการยืนยันใช่หรือไม่"
+              okText="ใช่"
+              cancelText="ไม่"
+            >
+              <Button
+                style={{ width: 100, marginLeft: 100, marginTop: 20 }}
+                type="danger"
+              >
+                ถอน
+              </Button>
+            </Popconfirm>
+          </div>
+        </Layout>
+
+        <Layout
+          style={{
+            background: "#fff",
+            marginLeft: 200,
+            marginTop: 50,
+            paddingLeft: 300,
+            paddingRight: 200
+          }}
+        >
+          <h3>เพิ่ม</h3>
+          <Form>
+            <Row
+              gutter={24}
+              style={{
+                background: "#eee",
+                width: "77%",
+                height: 40,
+                textAlign: "left",
+                padding: 10,
+                marginBottom: 15
+              }}
+            >
+              <Col span={8} style={{ textAlign: "Left" }}>
+                <b>Course ID</b>
+              </Col>
+              <Col span={8} style={{ textAlign: "Left" }}>
+                <b> Course Name</b>
+              </Col>
+              <Col span={4} style={{ textAlign: "Left" }}>
+                <b> Section</b>
+              </Col>
+            </Row>
+
+            <WrappedDynamicRule
+              onChangeCID = {(value) => this.props.setField("ci0",value)}
+              onChangesecnumber = {(value) => this.props.setField("st0",value)}
+            />
+
+            <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
+              <Button style={{ width: 100 }} type="primary" htmlType="submit"
+                onClick = {e => this.props.confirmRegist(this.props.courseRegistTmp,this.props.userId)}
+              >
+                Save
+              </Button>
+
+              <Footer
+                style={{ marginLeft: 100, width: "100%", background: "#fff" }}
+              />
+            </div>
+          </Form>
+          <Footer style={{ marginLeft: 100, width: "100%", background: "#fff" }} />
+        </Layout>
+      </Layout>)
+    }
+}
+
+export default connect (mapStateToProps,mapDispatchToProps)(AddSubWithPage);

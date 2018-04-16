@@ -12,12 +12,14 @@ class MyButton extends Component {
   render() {
     if (this.props.props.loginSuccess == "true") {
       this.props.props.onChange("loginSuccess","false");
+      let tmp = this.props.props.userId;
+      this.props.props.onChange('userIdTmp',this.props.props.userId)
+      this.props.props.onChange('password','');
+      this.props.props.onChange('userId','');
       return (
-          <Redirect to={"/student/" + this.props.props.userId + "/home"}>Log in</Redirect>
+          <Redirect to={"/student/" + tmp + "/home"}>Log in</Redirect>
       );
     } else {
-      console.log(this.props.props.userId)
-      console.log(this.props.props.password)
       return (
         <Button
           onClick = {e => this.props.props.loginVerify(this.props.props.userId,this.props.props.password)}
@@ -49,15 +51,12 @@ return(
 var parent = this;
 //use this.props.userId to query password
 //and check condition if id and password match.
-console.log("in");
 axios.post('http://localhost:8000/student_reg', {
 username: this.props.props.userId,
 password: this.props.props.password
 })
 .then(function (response) {
-console.log(parent);
 if(response.data.valid == "true"){
-  console.log("in");
   parent.props.props.onChange("loginSuccess", "true")
   parent.props.props.setField("FName",response.data.FName)
   parent.props.props.setField("LName",response.data.LName)
@@ -66,5 +65,4 @@ if(response.data.valid == "true"){
 }
 })
 .catch(function (error) {
-console.log(error);
 });*/

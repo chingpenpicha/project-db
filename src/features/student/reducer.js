@@ -4,12 +4,18 @@ const SET_FIELD = "SET_FIELD";
 const CONFIRM_REGIST = "CONFIRM_REGIST"
 const GET_REGIST_FULFILLED = "GET_REGIST_FULFILLED"
 const GET_REGIST = "GET_REGIST"
+const CONFIRM_REGIST_FULFILLED = "CONFIRM_REGIST_FULFILLED"
+const DROP_COURSE = "DROP_COURSE"
+const DROP_COURSE_FULFILLED = "DROP_COURSE_FULFILLED"
+const MENU = "MENU"
+const MENU6 = "MENU6"
+const MENU2 = "MENU2"
+
 
 const initialState = {
-  courseRegist: [{CID : "-"}],
-  courseRegistD: [{
-    CID : "-", courseName : "", section : "", credit: ""
-  }],
+  queryRegist: "true",
+  dropCourse : [],
+  courseRegist: "-",
   ci0 : "",st0 : "",
   ci1 : "",st1 : "",
   ci2 : "",st2 : "",
@@ -20,12 +26,11 @@ const initialState = {
   ci7 : "",st7 : "",
   ci8 : "",st8 : "",
   ci9 : "",st9 : "",
-  loading: false,
   studentGrade : []
 };
 
+
 export default (state = initialState ,action) => {
-  console.log(action);
   switch (action.type) {
     case SET_FIELD:
       return {
@@ -33,9 +38,10 @@ export default (state = initialState ,action) => {
         [action.key]: action.value
       };
 
-    case CONFIRM_REGIST:
+    case CONFIRM_REGIST_FULFILLED:
       return {
-        ...state
+        ...state,
+        queryRegist : "true"
       };
 
     case GET_REGIST_FULFILLED:
@@ -43,6 +49,37 @@ export default (state = initialState ,action) => {
        ...state,
        courseRegist : action.payload
      }
+
+     case DROP_COURSE_FULFILLED :
+       return {
+         ...state,
+         queryRegist : "true"
+       }
+
+
+     case MENU6:
+        return {
+          ...state,
+          queryRegist: "true",
+          courseRegist: "-",
+          ci0 : "",st0 : "",
+          ci1 : "",st1 : "",
+          ci2 : "",st2 : "",
+          ci3 : "",st3 : "",
+          ci4 : "",st4 : "",
+          ci5 : "",st5 : "",
+          ci6 : "",st6 : "",
+          ci7 : "",st7 : "",
+          ci8 : "",st8 : "",
+          ci9 : "",st9 : "",
+          studentGrade : []
+      }
+
+      case MENU2:
+        return{
+          ...state,
+          dropCourse: []
+        }
 
     default:
       return state;
@@ -63,9 +100,6 @@ export const confirmRegist = (courseRegist,userId) => ({
         studentId : userId,
     })
     .then(function(response) {
-      console.log("HERERERERE")
-      console.log(userId);
-      console.log(response);
     })
 });
 
@@ -75,8 +109,21 @@ export const getRegist = (userId) => ({
         studentId : userId,
     })
     .then(function(response) {
-      console.log("HERERERERERERE")
-      console.log(response.data.courseRegist)
       return response.data.courseRegist
+    })
+});
+
+  export const menu = (e) => ({
+    type : MENU + e.key,
+    e,
+  })
+
+    export const dropCourse = (userId,dropCourse) => ({
+      type : DROP_COURSE,
+      payload: axios.post('http://localhost:8000/dropSubject',{
+        studentId : userId,
+        dropCourse : dropCourse,
+    }).then(function(response) {
+        console.log(userId,dropCourse);
     })
 });

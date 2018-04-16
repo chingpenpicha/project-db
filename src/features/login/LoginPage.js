@@ -29,7 +29,6 @@ const StudentPage = props => (
         <div style={{ background: "#fff", padding: 50 }}>
           <div style={{ minHeight: 30 }} />
           <NormalLoginForm
-            test={e => console.log(props)}
             loginVerify = {(username,password) => props.loginVerify(username,password)}
             onChangeRadio={e => props.setType(e)}
             onChange={(key, value) => props.setField(key, value)}

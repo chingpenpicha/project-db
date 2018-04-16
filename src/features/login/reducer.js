@@ -7,6 +7,7 @@ const LOGIN_VERIFY_FULFILLED = "LOGIN_VERIFY_FULFILLED";
 
 const initialState = {
   userId: '',
+  userIdTmp : '',
   password: '',
   userType: '',
   loginSuccess : '',
@@ -14,6 +15,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+  console.log(state)
   switch (action.type) {
     case SET_FIELD:
       return {
@@ -29,8 +31,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginSuccess : action.payload.valid,
-        userInformation : action.payload
-
+        userInformation : action.payload,
       }
     default:
       return state;
@@ -55,7 +56,6 @@ export const loginVerify = (username,password) => ({
     password: password
   })
     .then(function (response) {
-      console.log(username)
       if(response.data.valid == "true"){
         return response.data;
       }else{

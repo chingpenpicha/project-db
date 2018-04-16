@@ -8,10 +8,10 @@ const { Header } = Layout;
 
 const enhance = connect(
   state => ({
-    courseRegist: state.student.courseRegist,
-    studentName: state.student.studentName,
-    studentCode: state.student.studentCode,
-    studentFaculty: state.student.studentFaculty
+    FName: state.login.userInformation.Fname,
+    LName: state.login.userInformation.Lname,
+    userId: state.login.userIdTmp,
+    studentFaculty: state.login.userInformation.faculty,
   }),
   { setField }
 );

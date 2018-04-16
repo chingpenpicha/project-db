@@ -1,27 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./LeftSider.css";
-import { setField } from "./reducer";
+import { setField,menu,getRegist } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 import MyQuery from "./query";
 import { bindActionCreators } from 'redux'
 
+
 const { Header, Content, Footer, Sider } = Layout;
 const mapStateToProps = (state) => {
   return {
-    courseRegist: state.student.courseRegist,state,
-    FName: state.login.userInformation.Fname,state,
-    LName: state.login.userInformation.Lname,state,
-    userId: state.login.userId,state,
-    studentFaculty: state.login.userInformation.faculty,state,
+    courseRegist: state.student.courseRegist,
+    FName: state.login.userInformation.Fname,
+    LName: state.login.userInformation.Lname,
+    userId: state.login.userIdTmp,
+    studentFaculty: state.login.userInformation.faculty,
+    queryRegist : state.student.queryRegist
 
   }
 }
 
   const mapDispatchToProps = (dispatch,) => {
     return {
-      setField: bindActionCreators(setField, dispatch)
+      setField: bindActionCreators(setField, dispatch),
+      menu: bindActionCreators(menu, dispatch),
+      getRegist : bindActionCreators(getRegist, dispatch)
     }
   }
 
@@ -34,7 +38,10 @@ const mapStateToProps = (state) => {
     }
 
     render(){
-      console.log(this.props);
+      if(this.props.queryRegist === "true"){
+        this.props.setField("queryRegist","false")
+        this.props.getRegist(this.props.userId)
+      }
       return(
         <Layout>
           <MyQuery setField = {(key,value) => this.props.setField(key,value)} type = "leftSider"/>
@@ -46,7 +53,7 @@ const mapStateToProps = (state) => {
             style={{ height: 100, weight: 100, margin: 50 }}
             src="https://1.bp.blogspot.com/-5bPNsF5plzw/VnJWs-7RbrI/AAAAAAAARmA/DaZmn8YUjAk/s1600-r/logo_research_at_google_color_1x_web_512dp.png"
             />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
+            <Menu onSelect = {e => this.props.menu(e)} theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
               <Menu.Item key="1">
                 <Link to={"/student/" + this.props.userId + "/normalRegister"} />
                 <Icon type="user" />
@@ -72,7 +79,7 @@ const mapStateToProps = (state) => {
                 <Icon type="table" />
                 <span className="nav-text">ตารางเรียน</span>
               </Menu.Item>
-              <Menu.Item key="6">
+              <Menu.Item  key="6">
                 <Link to="/" />
                 <Icon type="logout" />
                 <span className="nav-text">Logout</span>

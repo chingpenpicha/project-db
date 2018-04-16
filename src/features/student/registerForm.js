@@ -11,7 +11,6 @@ class DynamicRule extends React.Component {
     });
   };
   onChangeCID(state, value) {
-    console.log(value);
     return {
       ...state,
       CID: value
