@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField, setType, loginVerify } from "./reducer";
+import {
+  setField,
+  setType,
+  loginVerifyTeacher,
+  loginVerifyStudent
+} from "./reducer";
 import { Layout } from "antd";
 import { Link, Redirect } from "react-router-dom";
 import NormalLoginForm from "./NormalLoginForm";
@@ -15,10 +20,10 @@ const enhance = connect(
     userType: state.login.userType,
     loginSuccess: state.login.loginSuccess
   }),
-  { setType, setField, loginVerify }
+  { setType, setField, loginVerifyTeacher, loginVerifyStudent }
 );
 
-const StudentPage = props => (
+const LoginPage = props => (
   <Layout>
     <Sider
       style={{ overflow: "auto", height: "100vh", position: "fixed", left: 0 }}
@@ -30,8 +35,11 @@ const StudentPage = props => (
           <div style={{ minHeight: 30 }} />
           <NormalLoginForm
             test={e => console.log(props)}
-            loginVerify={(username, password) =>
-              props.loginVerify(username, password)
+            loginVerifyTeacher={(username, password) =>
+              props.loginVerifyTeacher(username, password)
+            }
+            loginVerifyStudent={(username, password) =>
+              props.loginVerifyStudent(username, password)
             }
             onChangeRadio={e => props.setType(e)}
             onChange={(key, value) => props.setField(key, value)}
@@ -49,4 +57,4 @@ const StudentPage = props => (
   </Layout>
 );
 
-export default enhance(StudentPage);
+export default enhance(LoginPage);

@@ -13,35 +13,69 @@ class MyButton extends Component {
     if (this.props.props.loginSuccess == "true") {
       this.props.props.onChange("loginSuccess", "false");
       return (
-        <Redirect to={"/student/" + this.props.props.userId + "/home"}>
+        <Redirect
+          to={
+            "/" +
+            this.props.props.userType +
+            "/" +
+            this.props.props.userId +
+            "/home"
+          }
+        >
           Log in
         </Redirect>
       );
     } else {
       console.log(this.props.props.userId);
       console.log(this.props.props.password);
-      return (
-        <Button
-          onClick={e =>
-            this.props.props.loginVerify(
-              this.props.props.userId,
-              this.props.props.password
-            )
-          }
-          type="primary"
-          htmlType="submit"
-          className="login-form-button"
-          style={{
-            width: 200,
-            textAlign: "center",
-            height: 50,
-            fontSize: 20,
-            marginTop: 10
-          }}
-        >
-          Log in
-        </Button>
-      );
+      console.log(this.props.props.userType);
+      if (this.props.props.userType === "student") {
+        return (
+          <Button
+            onClick={e =>
+              this.props.props.loginVerifyStudent(
+                this.props.props.userId,
+                this.props.props.password
+              )
+            }
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            style={{
+              width: 200,
+              textAlign: "center",
+              height: 50,
+              fontSize: 20,
+              marginTop: 10
+            }}
+          >
+            Log in
+          </Button>
+        );
+      } else if (this.props.props.userType === "teacher") {
+        return (
+          <Button
+            onClick={e =>
+              this.props.props.loginVerifyTeacher(
+                this.props.props.userId,
+                this.props.props.password
+              )
+            }
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            style={{
+              width: 200,
+              textAlign: "center",
+              height: 50,
+              fontSize: 20,
+              marginTop: 10
+            }}
+          >
+            Log in
+          </Button>
+        );
+      }
     }
   }
 }
