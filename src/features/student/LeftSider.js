@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./LeftSider.css";
-import { setField,menu,getRegist, getRegistW } from "./reducer";
+import { setField,menu,getRegist, getRegistW, getGrade } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 import MyQuery from "./query";
@@ -17,7 +17,8 @@ const mapStateToProps = state => {
     userId: state.login.userIdTmp,
     studentFaculty: state.login.userInformation.faculty,
     queryRegist : state.student.queryRegist,
-    queryRegistW : state.student.queryRegistW
+    queryRegistW : state.student.queryRegistW,
+    queryGrade : state.student.queryGrade
   }
 }
 
@@ -26,7 +27,8 @@ const mapStateToProps = state => {
       setField: bindActionCreators(setField, dispatch),
       menu: bindActionCreators(menu, dispatch),
       getRegist : bindActionCreators(getRegist, dispatch),
-      getRegistW : bindActionCreators(getRegistW, dispatch)
+      getRegistW : bindActionCreators(getRegistW, dispatch),
+      getGrade : bindActionCreators(getGrade,dispatch)
     }
   };
 
@@ -44,6 +46,10 @@ class LeftSider extends React.Component {
       if(this.props.queryRegistW === "true"){
         this.props.setField("queryRegistW","false")
         this.props.getRegistW(this.props.userId)
+      }
+      if(this.props.queryGrade === "true"){
+        this.props.setField("queryGrade","false")
+        this.props.getGrade(this.props.userId)
       }
     return (
       <Layout>

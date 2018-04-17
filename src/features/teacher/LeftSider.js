@@ -14,6 +14,7 @@ const enhance = connect(
     userId: state.login.userIdTmp,
     FName: state.login.userInformation.Fname,
     LName: state.login.userInformation.Lname,
+    faculty : state.login.userInformation.faculty
   }),
   { setField }
 );
@@ -65,8 +66,8 @@ const LeftSider = props => (
           marginRight: 20
         }}
       >
-        <b>Faculty:</b> {props.studentFaculty}, <b>Name:</b>
-        {props.studentName}, <b>ID:</b> {props.studentCode}
+        <b>Faculty:</b> {props.faculty}, <b>Name:</b>
+        {props.FName + " " + props.LName}, <b>ID:</b> {props.userId}
       </Header>
     </Layout>
   </Layout>

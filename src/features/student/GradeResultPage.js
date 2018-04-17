@@ -21,7 +21,6 @@ const enhance = connect(
 
 const GradeResultPage = props => (
   <Layout style={{ background: "#fff" }}>
-  <MyQuery setField = {(key,value) => props.setField(key,value)} type = "gradeResult"/>
     <Header
       style={{
         background: "#fff",
@@ -39,8 +38,13 @@ const GradeResultPage = props => (
         padding: 10
       }}
     >
-      <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 1" gradeResult = {props.gradeResult} />
-      <GradeTable title="ปีการศึกษา 2555 ภาคเรียนที่ 2" gradeResult = {props.gradeResult} />
+    {props.gradeResult.map(e => (
+      <li key = {e.academicyear + " " + e.term}>
+        <GradeTable title= { "ปีการศึกษา " + e.academicyear + " ภาคเรียนที่ " + e.term } gradeResult = {e.courseGrade} />
+      </li>
+    ))  }
+
+
     </Layout>
   </Layout>
 );

@@ -14,11 +14,15 @@ const WITHDRAW_COURSE_FULFILLED = "WITHDRAW_COURSE_FULFILLED"
 const MENU = "MENU"
 const MENU6 = "MENU6"
 const MENU2 = "MENU2"
-
+const MENU3 = "MENU3"
+const MENU5 = "MENU5"
+const GET_GRADE = "GET_GRADE"
+const GET_GRADE_FULFILLED = "GET_GRADE_FULFILLED"
 
 const initialState = {
   queryRegist: "true",
   queryRegistW: "true",
+  queryGrade : "true",
   dropCourse : [],
   courseRegist: "-",
   courseRegistW: "-",
@@ -32,7 +36,41 @@ const initialState = {
   ci7 : "",st7 : "",
   ci8 : "",st8 : "",
   ci9 : "",st9 : "",
-  studentGrade : []
+  gradeResult : [{
+      academicYear : "2017",
+      semester : "1",
+      courseGrade : [{
+          courseId: "213112",
+          courseName: "DB",
+          credit: "3",
+          grade: "A"
+        },
+        {
+          courseId: "211111",
+          courseName: "SA",
+          credit: "3",
+          grade: "A"
+        }
+      ]
+    },{
+        academicYear : "2017",
+        semester : "2",
+        courseGrade : [{
+            courseId: "213113",
+            courseName: "DBX",
+            credit: "3",
+            grade: "A"
+          },
+          {
+            courseId: "211112",
+            courseName: "SAT",
+            credit: "3",
+            grade: "A"
+          }
+        ]
+      }
+  ]
+
 };
 
 
@@ -93,12 +131,27 @@ export default (state = initialState ,action) => {
           ci9 : "",st9 : "",
           studentGrade : []
       }
-
       case MENU2:
         return{
           ...state,
           queryRegistW : "true",
           dropCourse: []
+        }
+      case MENU5:
+        return{
+          ...state,
+          searchResult : []
+        }
+      case MENU3:
+        return{
+          ...state,
+          queryGrade : "true"
+        }
+
+      case GET_GRADE_FULFILLED:
+        return{
+          ...state,
+          gradeResult : action.payload
         }
 
     default:
@@ -154,7 +207,6 @@ export const getRegistW = (userId) => ({
         studentId : userId,
         dropCourse : dropCourse,
     }).then(function(response) {
-        console.log(userId,dropCourse);
     })
 });
 
@@ -164,6 +216,14 @@ export const getRegistW = (userId) => ({
       studentId : userId,
       courseWithdraw : courseWithdraw,
     }).then(function(response){
-      console.log(userId,courseWithdraw);
+    })
+  })
+
+  export const getGrade = (userId) => ({
+    type : GET_GRADE,
+    payload : axios.post('http://localhost:8000/getGrade',{
+      studentId : userId
+    }).then(function(response){
+      return response.data.studentGrade
     })
   })
