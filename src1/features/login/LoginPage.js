@@ -1,8 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField, setType, loginVerifyStudent, loginVerifyTeacher } from "./reducer";
+import {
+  setField,
+  setType,
+  loginVerifyTeacher,
+  loginVerifyStudent
+} from "./reducer";
 import { Layout } from "antd";
-import { Link,Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import NormalLoginForm from "./NormalLoginForm";
 const { Sider, Content, Footer } = Layout;
 
@@ -13,12 +18,12 @@ const enhance = connect(
     userId: state.login.userId,
     password: state.login.password,
     userType: state.login.userType,
-    loginSuccess : state.login.loginSuccess
+    loginSuccess: state.login.loginSuccess
   }),
-  { setType, setField, loginVerifyStudent, loginVerifyTeacher }
+  { setType, setField, loginVerifyTeacher, loginVerifyStudent }
 );
 
-const StudentPage = props => (
+const LoginPage = props => (
   <Layout>
     <Sider
       style={{ overflow: "auto", height: "100vh", position: "fixed", left: 0 }}
@@ -29,15 +34,14 @@ const StudentPage = props => (
         <div style={{ background: "#fff", padding: 50 }}>
           <div style={{ minHeight: 30 }} />
           <NormalLoginForm
-            loginVerifyStudent = {(username,password) => props.loginVerifyStudent(username,password)}
-            loginVerifyTeacher = {(username,password) => props.loginVerifyTeacher(username,password)}
+            loginVerify = {(username,password) => props.loginVerify(username,password)}
             onChangeRadio={e => props.setType(e)}
             onChange={(key, value) => props.setField(key, value)}
-            setStudent = {(key,value) => props.setField(key, value)}
+            setStudent={(key, value) => props.setField(key, value)}
             userId={props.userId}
             password={props.password}
-            loginSuccess = {props.loginSuccess}
-            userType = {props.userType}
+            loginSuccess={props.loginSuccess}
+            userType={props.userType}
           />
         </div>
       </Content>
@@ -47,4 +51,4 @@ const StudentPage = props => (
   </Layout>
 );
 
-export default enhance(StudentPage);
+export default enhance(LoginPage);

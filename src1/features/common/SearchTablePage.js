@@ -4,20 +4,19 @@ import { connect } from "react-redux";
 import {} from "./reducer";
 import { Layout, Table } from "antd";
 import { Form, Row, Col, Input, Button, Icon, Menu, Select } from "antd";
-import {setField} from "./reducer";
+
 const Option = Select.Option;
 const FormItem = Form.Item;
 const { Header } = Layout;
 
 const enhance = connect(
   state => ({
-    courseName: state.search.courseName,
-    CID: state.search.CID,
-    academicYear: state.search.academicYear,
-    semester: state.search.semester,
-    searchResult : state.search.searchResult
+    courseRegist: state.student.courseRegist,
+    studentName: state.student.studentName,
+    studentCode: state.student.studentCode,
+    studentFaculty: state.student.studentFaculty
   }),
-  {setField}
+  {}
 );
 
 class AdvancedSearchForm extends React.Component {
@@ -75,7 +74,7 @@ class AdvancedSearchForm extends React.Component {
     children.push(
       <Col span={4} key={3}>
         <FormItem label={`Semester`}>
-          {getFieldDecorator(`semester`, {
+          {getFieldDecorator(`year`, {
             rules: [
               {
                 required: true,
@@ -84,9 +83,9 @@ class AdvancedSearchForm extends React.Component {
             ]
           })(
             <Select placeholder="Semester">
-              <Option value="1">1st Semester</Option>
-              <Option value="2">2nd Semester</Option>
-              <Option value="3">Summer</Option>
+              <Option value="Option1-1">1st Semester</Option>
+              <Option value="Option1-2">2nd Semester</Option>
+              <Option value="Option1-2">Summer</Option>
             </Select>
           )}
         </FormItem>
@@ -105,7 +104,6 @@ class AdvancedSearchForm extends React.Component {
             <div style={{ marginTop: 42 }}>
               <Button type="primary" htmlType="submit">
                 Search
-                //onClick axios
               </Button>
               <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
                 Clear
@@ -117,7 +115,7 @@ class AdvancedSearchForm extends React.Component {
     );
   }
 }
-const WrappedAdvancedSearchForm = Form.create()(AdvancedSearchForm)
+const WrappedAdvancedSearchForm = Form.create()(AdvancedSearchForm);
 
 const columns = [
   {

@@ -4,11 +4,9 @@ const SET_FIELD = "SET_FIELD";
 const SET_TYPE = "SET_TYPE";
 
 const initialState = {
-  CID: "",
-  courseName: "",
-  academicYear: "",
-  semseter: "",
-  searchResult : []
+  userId: "",
+  password: "",
+  userType: ""
 };
 
 export default (state = initialState, action) => {

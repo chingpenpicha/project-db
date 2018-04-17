@@ -4,12 +4,16 @@ const SET_FIELD = "SET_FIELD";
 const SET_TYPE = "SET_TYPE";
 const LOGIN_VERIFY = "LOGIN_VERIFY";
 const LOGIN_VERIFY_FULFILLED = "LOGIN_VERIFY_FULFILLED";
+const LOGIN_VERIFY_STUDENT = "LOGIN_VERIFY_STUDENT";
+const LOGIN_VERIFY_TEACHER = "LOGIN_VERIFY_TEACHER";
+const LOGIN_VERIFY_STUDENT_FULFILLED = "LOGIN_VERIFY_STUDENT_FULFILLED";
+const LOGIN_VERIFY_TEACHER_FULFILLED = "LOGIN_VERIFY_TEACHER_FULFILLED";
 
 const initialState = {
   userId: '',
   userIdTmp : '',
   password: '',
-  userType: 'Student',
+  userType: '',
   loginSuccess : '',
   userInformation:[],
 };
@@ -27,12 +31,18 @@ export default (state = initialState, action) => {
         ...state,
         userType: action.userT
       };
-    case LOGIN_VERIFY_FULFILLED:
+    case LOGIN_VERIFY_STUDENT_FULFILLED:
       return {
         ...state,
-        loginSuccess : action.payload.valid,
-        userInformation : action.payload,
-      }
+        loginSuccess: action.payload.valid,
+        userInformation: action.payload
+      };
+    case LOGIN_VERIFY_TEACHER_FULFILLED:
+      return {
+        ...state,
+        loginSuccess: action.payload.valid,
+        userInformation: action.payload
+      };
     default:
       return state;
   }
@@ -49,28 +59,30 @@ export const setType = userT => ({
   userT
 });
 
-export const loginVerifyStudent = (username,password) => ({
-  type: LOGIN_VERIFY,
-  payload:axios.post('http://localhost:8000/student_reg', {
-    username: username,
-    password: password
-  })
-    .then(function (response) {
-      if(response.data.valid == "true"){
+export const loginVerifyStudent = (username, password) => ({
+  type: LOGIN_VERIFY_STUDENT,
+  payload: axios
+    .post("http://localhost:8000/student_reg", {
+      username: username,
+      password: password
+    })
+    .then(function(response) {
+      console.log(username);
+      if (response.data.valid == "true") {
         return response.data;
-      }else{
+      } else {
         return {
-          valid : 'false',
-          Fname : 'null',
-          Lname : 'null',
-          faculty : 'null'
-        }
+          valid: "false",
+          Fname: "null",
+          Lname: "null",
+          faculty: "null"
+        };
       }
     })
-  });
+});
 
-  export const loginVerifyTeacher = (username, password) => ({
-  type: LOGIN_VERIFY,
+export const loginVerifyTeacher = (username, password) => ({
+  type: LOGIN_VERIFY_TEACHER,
   payload: axios
     .post("http://localhost:8000/teacher_reg", {
       username: username,

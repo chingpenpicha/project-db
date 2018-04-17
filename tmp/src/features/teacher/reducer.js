@@ -1,14 +1,27 @@
 import axios from "axios";
 
 const SET_FIELD = "SET_FIELD";
-const SET_TYPE = "SET_TYPE";
 
 const initialState = {
-  CID: "",
-  courseName: "",
-  academicYear: "",
-  semseter: "",
-  searchResult : []
+  courseRegist: [
+    {
+      courseId: "1234",
+      section: "1",
+      courseName: "SA",
+      credit: "3"
+    },
+    {
+      courseId: "12345",
+      section: "12",
+      courseName: "Data Base",
+      credit: "3"
+    }
+  ],
+  menuSelect: "",
+  studentName: "Kongnut Songwattana",
+  studentCode: "5830047621",
+  studentFaculty: "Engineering",
+  loading: false
 };
 
 export default (state = initialState, action) => {
@@ -18,11 +31,7 @@ export default (state = initialState, action) => {
         ...state,
         [action.key]: action.value
       };
-    case SET_TYPE:
-      return {
-        ...state,
-        userType: action.userT
-      };
+
     default:
       return state;
   }
@@ -32,9 +41,4 @@ export const setField = (key, value) => ({
   type: SET_FIELD,
   key,
   value
-});
-
-export const setType = userT => ({
-  type: SET_TYPE,
-  userT
 });

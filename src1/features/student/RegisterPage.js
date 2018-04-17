@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setField, confirmRegist } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
 import { Layout, Input, Table, Row, Col, Button, Form, Popconfirm } from "antd";
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from "redux";
 
 const FormItem = Form.FormItem;
 const { Header, Footer } = Layout;
@@ -59,12 +59,11 @@ const columns = [
   }
 ];
 
-
 //อันนี้ไว้ตอนยืนยันแล้ว -OO-
 class registering extends React.Component {
   constructor(props) {
-      super(props);
-      this.props = props;
+    super(props);
+    this.props = props;
   }
 
   render() {
@@ -79,30 +78,30 @@ class registering extends React.Component {
               marginLeft: 200,
               marginTop: 20
             }}
-            >
+          >
             <h1>ลงทะเบียนเรียน</h1>
-            </Header>
-              <Layout
-                style={{
-                  background: "#fff",
-                  marginLeft: 200,
-                  marginTop: 50,
-                  paddingLeft: 100,
-                  paddingRight: 100
-                }}
-              >
-                <h3>ปีการศึกษา 2555 เทอม 2</h3>
-                <Table
-                  columns={columns}
-                  dataSource={this.props.courseRegist}
-                  rowKey = "CID"
-                  size="middle"
-                  pagination={false}
-                />
-              </Layout>
+          </Header>
+          <Layout
+            style={{
+              background: "#fff",
+              marginLeft: 200,
+              marginTop: 50,
+              paddingLeft: 100,
+              paddingRight: 100
+            }}
+          >
+            <h3>ปีการศึกษา 2555 เทอม 2</h3>
+            <Table
+              columns={columns}
+              dataSource={this.props.courseRegist}
+              rowKey="CID"
+              size="middle"
+              pagination={false}
+            />
+          </Layout>
         </Layout>
       );
-    }else {
+    } else {
       return (
         <Layout style={{ background: "#fff" }}>
           <Header
@@ -149,50 +148,62 @@ class registering extends React.Component {
               </Row>
 
               <WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci0",value)}
-              onChangesecnumber = {(value) => this.props.setField("st0",value)}
+                onChangeCID={value => this.props.setField("ci0", value)}
+                onChangesecnumber={value => this.props.setField("st0", value)}
               />
               <WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci1",value)}
-              onChangesecnumber = {(value) => this.props.setField("st1",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci2",value)}
-              onChangesecnumber = {(value) => this.props.setField("st2",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci3",value)}
-              onChangesecnumber = {(value) => this.props.setField("st3",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci4",value)}
-              onChangesecnumber = {(value) => this.props.setField("st4",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci5",value)}
-              onChangesecnumber = {(value) => this.props.setField("st5",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci6",value)}
-              onChangesecnumber = {(value) => this.props.setField("st6",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci7",value)}
-              onChangesecnumber = {(value) => this.props.setField("st7",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci8",value)}
-              onChangesecnumber = {(value) => this.props.setField("st8",value)}
-              /><WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci9",value)}
-              onChangesecnumber = {(value) => this.props.setField("st9",value)}
+                onChangeCID={value => this.props.setField("ci1", value)}
+                onChangesecnumber={value => this.props.setField("st1", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci2", value)}
+                onChangesecnumber={value => this.props.setField("st2", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci3", value)}
+                onChangesecnumber={value => this.props.setField("st3", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci4", value)}
+                onChangesecnumber={value => this.props.setField("st4", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci5", value)}
+                onChangesecnumber={value => this.props.setField("st5", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci6", value)}
+                onChangesecnumber={value => this.props.setField("st6", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci7", value)}
+                onChangesecnumber={value => this.props.setField("st7", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci8", value)}
+                onChangesecnumber={value => this.props.setField("st8", value)}
+              />
+              <WrappedDynamicRule
+                onChangeCID={value => this.props.setField("ci9", value)}
+                onChangesecnumber={value => this.props.setField("st9", value)}
               />
 
 
 
               <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
-              <Popconfirm
-                  onConfirm = {e => this.props.confirmRegist(this.props.courseRegistTmp,this.props.userId)}
+                <Popconfirm
+                  onConfirm={e =>
+                    this.props.confirmRegist(
+                      this.props.courseRegistTmp,
+                      this.props.userId
+                    )
+                  }
                   placement="right"
                   title="เมื่อยืนยันแล้วจะไม่สามารถแก้ไขได้ ต้องการยืนยันใช่หรือไม่"
                   okText="ใช่"
                   cancelText="ไม่"
                 >
-                  <Button
-                    style={{ width: 100, marginLeft: 100 }} type="danger">
+                  <Button style={{ width: 100, marginLeft: 100 }} type="danger">
                     ยืนยัน
                   </Button>
                 </Popconfirm>
@@ -203,9 +214,9 @@ class registering extends React.Component {
             </Form>
           </Layout>
         </Layout>
-      )
+      );
     }
   }
 }
 
-export default connect (mapStateToProps,mapDispatchToProps)(registering);
+export default connect(mapStateToProps, mapDispatchToProps)(registering);
