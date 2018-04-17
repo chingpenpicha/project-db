@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./LeftSider.css";
-import { setField,menu,getRegist } from "./reducer";
+import { setField,menu,getRegist, getRegistW } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 import MyQuery from "./query";
@@ -16,8 +16,8 @@ const mapStateToProps = (state) => {
     LName: state.login.userInformation.Lname,
     userId: state.login.userIdTmp,
     studentFaculty: state.login.userInformation.faculty,
-    queryRegist : state.student.queryRegist
-
+    queryRegist : state.student.queryRegist,
+    queryRegistW : state.student.queryRegistW
   }
 }
 
@@ -25,7 +25,8 @@ const mapStateToProps = (state) => {
     return {
       setField: bindActionCreators(setField, dispatch),
       menu: bindActionCreators(menu, dispatch),
-      getRegist : bindActionCreators(getRegist, dispatch)
+      getRegist : bindActionCreators(getRegist, dispatch),
+      getRegistW : bindActionCreators(getRegistW, dispatch)
     }
   }
 
@@ -41,6 +42,10 @@ const mapStateToProps = (state) => {
       if(this.props.queryRegist === "true"){
         this.props.setField("queryRegist","false")
         this.props.getRegist(this.props.userId)
+      }
+      else if(this.props.queryRegistW === "true"){
+        this.props.setField("queryRegistW","false")
+        this.props.getRegistW(this.props.userId)
       }
       return(
         <Layout>

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField,confirmRegist,dropCourse } from "./reducer";
+import { setField,confirmRegist,dropCourse,withDrawCourse } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
 import { bindActionCreators } from 'redux'
 import { Layout, Table, Row, Col, Button, Form, Popconfirm } from "antd";
@@ -9,7 +9,7 @@ const { Header, Footer } = Layout;
 const mapStateToProps = (state) => {
   return {
     dropCourseVar : state.student.dropCourse,
-    courseRegist: state.student.courseRegist,
+    courseRegist: state.student.courseRegistW,
     studentName: state.student.studentName,
     studentCode: state.student.studentCode,
     studentFaculty: state.student.studentFaculty,
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch, props) => {
         setField: bindActionCreators(setField, dispatch),
         confirmRegist : bindActionCreators(confirmRegist, dispatch),
         dropCourse : bindActionCreators(dropCourse,dispatch),
+        withDrawCourse : bindActionCreators(withDrawCourse,dispatch)
     }
 }
 
@@ -112,6 +113,7 @@ class AddSubWithPage extends React.Component {
               ลด
             </Button>
             <Popconfirm
+              onConfirm = {e => this.props.withDrawCourse(this.props.userId,this.props.dropCourseVar)}
               placement="right"
               title="ต้องการยืนยันใช่หรือไม่"
               okText="ใช่"

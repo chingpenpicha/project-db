@@ -7,6 +7,10 @@ const GET_REGIST = "GET_REGIST"
 const CONFIRM_REGIST_FULFILLED = "CONFIRM_REGIST_FULFILLED"
 const DROP_COURSE = "DROP_COURSE"
 const DROP_COURSE_FULFILLED = "DROP_COURSE_FULFILLED"
+const GET_REGISTW = "GET_REGISTW"
+const GET_REGISTW_FULFILLED = "GET_REGISTW_FULFILLED"
+const WITHDRAW_COURSE = "WITHDRAW_COURSE"
+const WITHDRAW_COURSE_FULFILLED = "WITHDRAW_COURSE_FULFILLED"
 const MENU = "MENU"
 const MENU6 = "MENU6"
 const MENU2 = "MENU2"
@@ -14,8 +18,10 @@ const MENU2 = "MENU2"
 
 const initialState = {
   queryRegist: "true",
+  queryRegistW: "true",
   dropCourse : [],
   courseRegist: "-",
+  courseRegistW: "-",
   ci0 : "",st0 : "",
   ci1 : "",st1 : "",
   ci2 : "",st2 : "",
@@ -50,12 +56,23 @@ export default (state = initialState ,action) => {
        courseRegist : action.payload
      }
 
+     case GET_REGISTW_FULFILLED:
+      return {
+        ...state,
+        courseRegistW : action.payload
+      }
+
      case DROP_COURSE_FULFILLED :
        return {
          ...state,
-         queryRegist : "true"
+         queryRegistW : "true"
        }
 
+     case WITHDRAW_COURSE_FULFILLED :
+      return {
+        ...state,
+        queryRegistW : "true"
+      }
 
      case MENU6:
         return {
@@ -78,6 +95,7 @@ export default (state = initialState ,action) => {
       case MENU2:
         return{
           ...state,
+          queryRegistW : "true",
           dropCourse: []
         }
 
@@ -113,6 +131,16 @@ export const getRegist = (userId) => ({
     })
 });
 
+export const getRegistW = (userId) => ({
+  type: GET_REGISTW,
+  payload: axios.post('http://localhost:8000/getRegNoW',{
+        studentId : userId,
+    })
+    .then(function(response) {
+      return response.data.courseRegist
+    })
+});
+
   export const menu = (e) => ({
     type : MENU + e.key,
     e,
@@ -127,3 +155,13 @@ export const getRegist = (userId) => ({
         console.log(userId,dropCourse);
     })
 });
+
+  export const withDrawCourse = (userId,courseWithdraw) => ({
+    type : WITHDRAW_COURSE,
+    payload : axios.post('http://localhost:8000/withdrawSubject',{
+      studentId : userId,
+      courseWithdraw : courseWithdraw,
+    }).then(function(response){
+      console.log(userId,courseWithdraw);
+    })
+  })
