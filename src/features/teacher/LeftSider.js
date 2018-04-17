@@ -11,11 +11,9 @@ const { Header, Sider } = Layout;
 
 const enhance = connect(
   state => ({
-    userId: state.login.userId,
-    courseRegist: state.student.courseRegist,
-    studentName: state.student.studentName,
-    studentCode: state.student.studentCode,
-    studentFaculty: state.student.studentFaculty
+    userId: state.login.userIdTmp,
+    FName: state.login.userInformation.Fname,
+    LName: state.login.userInformation.Lname,
   }),
   { setField }
 );
