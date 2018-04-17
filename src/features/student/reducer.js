@@ -47,7 +47,8 @@ export default (state = initialState ,action) => {
     case CONFIRM_REGIST_FULFILLED:
       return {
         ...state,
-        queryRegist : "true"
+        queryRegist : "true",
+        queryRegistW : "true"
       };
 
     case GET_REGIST_FULFILLED:
@@ -65,7 +66,8 @@ export default (state = initialState ,action) => {
      case DROP_COURSE_FULFILLED :
        return {
          ...state,
-         queryRegistW : "true"
+         queryRegistW : "true",
+         queryRegist : "true"
        }
 
      case WITHDRAW_COURSE_FULFILLED :

@@ -41,7 +41,7 @@ class LeftSider extends React.Component {
         this.props.setField("queryRegist","false")
         this.props.getRegist(this.props.userId)
       }
-      else if(this.props.queryRegistW === "true"){
+      if(this.props.queryRegistW === "true"){
         this.props.setField("queryRegistW","false")
         this.props.getRegistW(this.props.userId)
       }
