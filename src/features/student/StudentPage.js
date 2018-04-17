@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setField } from "./reducer";
 import { Layout } from "antd";
 
-const { Header, Footer } = Layout;
+const { Footer } = Layout;
 //import "./Search.css";
 
 const enhance = connect(state => ({}), { setField });

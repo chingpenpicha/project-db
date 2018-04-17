@@ -8,7 +8,7 @@ import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import loginReducer from "./features/login/reducer";
 import studentReducer from "./features/student/reducer";
 import teacherReducer from "./features/teacher/reducer";
-import searchReducer from "./features/common/reducer"
+import searchReducer from "./features/common/reducer";
 import promiseMiddleware from "redux-promise-middleware";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes.js";
@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   student: studentReducer,
   teacher: teacherReducer,
-  search : searchReducer
+  search: searchReducer
 });
 // 1 store มีหลาย reducer ได้ แต่ต้องไป รวมให้มาเป็น reducer อันใหญ่อันเดียวก่อนละค่อยใส่ลงไปใน createStore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
