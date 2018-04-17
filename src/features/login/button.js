@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link,Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Button } from "antd";
 import axios from "axios";
 
@@ -10,27 +10,28 @@ class MyButton extends Component {
   }
 
   render() {
-    console.log("HERE")
+    console.log("HERE");
     console.log(this.props.props);
     if (this.props.props.loginSuccess == "true") {
-      this.props.props.onChange("loginSuccess","false");
+      this.props.props.onChange("loginSuccess", "false");
       let tmp = this.props.props.userId;
-      this.props.props.onChange('userIdTmp',this.props.props.userId)
-      this.props.props.onChange('password','');
-      this.props.props.onChange('userId','');
-      if(this.props.props.userType == "Student"){
-        return (
-            <Redirect to={"/student/" + tmp + "/home"}>Log in</Redirect>
-          );
-      }else{
-        return (
-            <Redirect to={"/teacher/" + tmp + "/home"}>Log in</Redirect>
-          );
+      this.props.props.onChange("userIdTmp", this.props.props.userId);
+      this.props.props.onChange("password", "");
+      this.props.props.onChange("userId", "");
+      if (this.props.props.userType == "Student") {
+        return <Redirect to={"/student/" + tmp + "/home"}>Log in</Redirect>;
+      } else {
+        return <Redirect to={"/teacher/" + tmp + "/home"}>Log in</Redirect>;
       }
-    } else if(this.props.props.userType === "Student") {
+    } else if (this.props.props.userType === "Student") {
       return (
         <Button
-          onClick = {e => this.props.props.loginVerifyStudent(this.props.props.userId,this.props.props.password)}
+          onClick={e =>
+            this.props.props.loginVerifyStudent(
+              this.props.props.userId,
+              this.props.props.password
+            )
+          }
           type="primary"
           htmlType="submit"
           className="login-form-button"
@@ -42,14 +43,18 @@ class MyButton extends Component {
             marginTop: 10
           }}
         >
-          {" "}
-          Log in{" "}
+          Log in
         </Button>
       );
-    }else {
+    } else {
       return (
         <Button
-          onClick = {e => this.props.props.loginVerifyTeacher(this.props.props.userId,this.props.props.password)}
+          onClick={e =>
+            this.props.props.loginVerifyTeacher(
+              this.props.props.userId,
+              this.props.props.password
+            )
+          }
           type="primary"
           htmlType="submit"
           className="login-form-button"

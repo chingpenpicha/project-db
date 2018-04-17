@@ -28,7 +28,7 @@ class DynamicRule extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Row gutter={24}>
-        <Col span={6} key={1}>
+        <Col span={8} key={1}>
           <FormItem>
             {getFieldDecorator("CID", {
               rules: [
@@ -38,16 +38,12 @@ class DynamicRule extends React.Component {
                 }
               ]
             })(
-              <Input
-                onChange={e => this.props.onChangeCID(e.target.value)}
-              />
+              <Input onChange={e => this.props.onChangeCID(e.target.value)} />
             )}
           </FormItem>
         </Col>
-        <Col span={6} key={2}>
-          <div>เดี๋ยวค่อย</div>
-        </Col>
-        <Col span={6} key={3}>
+
+        <Col span={8} key={2}>
           <FormItem>
             {getFieldDecorator("secnumber", {
               rules: [
