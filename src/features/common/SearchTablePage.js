@@ -3,7 +3,7 @@ import "./LeftSider.css";
 import WrappedDynamicRule from "./SearchTableForm";
 import SearchTableItem from "./SearchTableItem";
 import { connect } from "react-redux";
-import { setField, setType, search } from "./reducer";
+import { setField, setType, searchCourse } from "./reducer";
 import { Layout } from "antd";
 
 const { Header } = Layout;
@@ -16,7 +16,7 @@ const enhance = connect(
     term: state.search.term,
     searchResult: state.search.searchResult
   }),
-  { setField, setType, search }
+  { setField, setType, searchCourse }
 );
 
 const SearchTablePage = props => (
@@ -43,7 +43,7 @@ const SearchTablePage = props => (
       <div>
         <WrappedDynamicRule
           onSearch={(CID, CABname, academicYear, term) =>
-            props.search(CID, CABname, academicYear, term)
+            props.searchCourse(CID, CABname, academicYear, term)
           }
           onChangeSelect={e => props.setType(e)}
           onChangeCID={value => this.props.setField("CID", value)}

@@ -25,11 +25,6 @@ export default (state = initialState, action) => {
         ...state,
         term: action.userT
       };
-    case SEARCH_FULFILLED:
-      return {
-        ...state,
-        searchResult: action.payload.response
-      };
     default:
       return state;
   }
