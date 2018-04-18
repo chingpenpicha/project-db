@@ -1,32 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField,confirmRegist,dropCourse } from "./reducer";
+import { setField, confirmRegist, dropCourse } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from "redux";
 import { Layout, Table, Row, Col, Button, Form, Popconfirm } from "antd";
 const { Header, Footer } = Layout;
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    dropCourseVar : state.student.dropCourse,
+    dropCourseVar: state.student.dropCourse,
     courseRegist: state.student.courseRegist,
     studentName: state.student.studentName,
     studentCode: state.student.studentCode,
     studentFaculty: state.student.studentFaculty,
     userId: state.student.userIdTmp,
-    courseRegistTmp : [
-      {CID : state.student.ci0, secnumber : state.student.st0}
-    ]
-  }
-}
+    courseRegistTmp: [{ CID: state.student.ci0, secnumber: state.student.st0 }]
+  };
+};
 
 const mapDispatchToProps = (dispatch, props) => {
-    return {
-        setField: bindActionCreators(setField, dispatch),
-        confirmRegist : bindActionCreators(confirmRegist, dispatch),
-        dropCourse : bindActionCreators(dropCourse,dispatch),
-    }
-}
+  return {
+    setField: bindActionCreators(setField, dispatch),
+    confirmRegist: bindActionCreators(confirmRegist, dispatch),
+    dropCourse: bindActionCreators(dropCourse, dispatch)
+  };
+};
 
 const columns = [
   {
@@ -50,8 +48,8 @@ const columns = [
 // rowSelection object indicates the need for row selection
 class AddSubWithPage extends React.Component {
   constructor(props) {
-      super(props);
-      this.props = props;
+    super(props);
+    this.props = props;
   }
 
   rowSelection = {
@@ -61,17 +59,17 @@ class AddSubWithPage extends React.Component {
         "selectedRows: ",
         selectedRows
       );
-      this.props.setField('dropCourse',selectedRows);
+      this.props.setField("dropCourse", selectedRows);
     },
     getCheckboxProps: record => ({
       name: record.name
     })
   };
 
-  render(){
+  render() {
     var dataSource = this.props.courseRegist;
-    if(this.props.courseRegist == "-"){
-      dataSource = []
+    if (this.props.courseRegist == "-") {
+      dataSource = [];
     }
 
     return (
@@ -97,17 +95,27 @@ class AddSubWithPage extends React.Component {
         >
           <h3>ลด/ถอน</h3>
           <Table
-            rowKey = "CID"
-            rowSelection= {this.rowSelection}
+            rowKey="CID"
+            rowSelection={this.rowSelection}
             columns={columns}
             dataSource={dataSource}
             size="middle"
             pagination={false}
           />
 
-          <div style={{ paddingRight: 100, marginTop: 10, textAlign: "center" }}>
-            <Button style={{ width: 100 }} type="primary" htmlType="submit"
-              onClick = {e => this.props.dropCourse(this.props.userId,this.props.dropCourseVar)}
+          <div
+            style={{ paddingRight: 100, marginTop: 10, textAlign: "center" }}
+          >
+            <Button
+              style={{ width: 100 }}
+              type="primary"
+              htmlType="submit"
+              onClick={e =>
+                this.props.dropCourse(
+                  this.props.userId,
+                  this.props.dropCourseVar
+                )
+              }
             >
               ลด
             </Button>
@@ -153,21 +161,31 @@ class AddSubWithPage extends React.Component {
                 <b>Course ID</b>
               </Col>
               <Col span={8} style={{ textAlign: "Left" }}>
-                <b> Course Name</b>
+                <b>Course Name</b>
               </Col>
               <Col span={4} style={{ textAlign: "Left" }}>
-                <b> Section</b>
+                <b>Section</b>
               </Col>
             </Row>
 
             <WrappedDynamicRule
-              onChangeCID = {(value) => this.props.setField("ci0",value)}
-              onChangesecnumber = {(value) => this.props.setField("st0",value)}
+              onChangeCID={value => this.props.setField("ci0", value)}
+              onChangesecnumber={value => this.props.setField("st0", value)}
             />
 
-            <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
-              <Button style={{ width: 100 }} type="primary" htmlType="submit"
-                onClick = {e => this.props.confirmRegist(this.props.courseRegistTmp,this.props.userId)}
+            <div
+              style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}
+            >
+              <Button
+                style={{ width: 100 }}
+                type="primary"
+                htmlType="submit"
+                onClick={e =>
+                  this.props.confirmRegist(
+                    this.props.courseRegistTmp,
+                    this.props.userId
+                  )
+                }
               >
                 Save
               </Button>
@@ -177,10 +195,13 @@ class AddSubWithPage extends React.Component {
               />
             </div>
           </Form>
-          <Footer style={{ marginLeft: 100, width: "100%", background: "#fff" }} />
+          <Footer
+            style={{ marginLeft: 100, width: "100%", background: "#fff" }}
+          />
         </Layout>
-      </Layout>)
-    }
+      </Layout>
+    );
+  }
 }
 
-export default connect (mapStateToProps,mapDispatchToProps)(AddSubWithPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddSubWithPage);

@@ -8,6 +8,7 @@ import LeftSider from "./features/student/LeftSider";
 import GradeResultPage from "./features/student/GradeResultPage";
 import DocumentRequestPage from "./features/student/DocumentRequestPage";
 import AddSubWithPage from "./features/student/AddSubWithPage";
+import PaymentPage from "./features/student/PaymentPage";
 
 import LeftSiderT from "./features/teacher/LeftSider";
 import SeeStudentGrade from "./features/teacher/SeeStudentGrade";
@@ -30,6 +31,7 @@ class Routes extends Component {
         <Route path="/student/:id/searchTable" component={SearchTablePage} />
         <Route path="/student/:id/addSubWith" component={AddSubWithPage} />
         <Route path="/student/:id/home" component={StudentPage} />
+        <Route path="/student/:id/payment" component={PaymentPage} />
 
         <Route path="/teacher/:id" component={LeftSiderT} />
         <Route path="/teacher/:id/studentGrade" component={SeeStudentGrade} />

@@ -100,7 +100,19 @@ class DynamicRule extends React.Component {
               marginTop: 39
             }}
           >
-            <Button type="primary">Search</Button>
+            <Button
+              onClick={e =>
+                this.props.onSearch(
+                  this.props.CID,
+                  this.props.CABname,
+                  this.props.academicyear,
+                  this.props.term
+                )
+              }
+              type="primary"
+            >
+              Search
+            </Button>
           </FormItem>
         </Col>
       </Row>
