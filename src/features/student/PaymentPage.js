@@ -33,6 +33,10 @@ const columns = [
     dataIndex: "term"
   },
   {
+    title: "Fee",
+    dataIndex: "tuitionfee"
+  },
+  {
     title: "Status",
     dataIndex: "status"
   }
