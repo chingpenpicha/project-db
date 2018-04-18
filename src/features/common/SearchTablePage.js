@@ -14,7 +14,7 @@ const mapStateToProps = state => {
     courseName: state.search.courseName,
     CID: state.search.CID,
     academicYear: state.search.academicYear,
-    term: state.search.term,
+    semester: state.search.semester,
     searchResult: state.search.searchResult
   }}
 
@@ -65,8 +65,11 @@ class SearchTablePage extends React.Component {
         <br />
         <h3>Search Result List</h3>
         <br />
-        <SearchTableItem title="2110251 : DIGITAL COMPUTER LOGIC" />
-        <SearchTableItem title="2111111 : ASDADSWEQEWQEWQE WER LOGIC" />
+        {this.props.searchResult.map(e => (
+          <li key = {e.CID}>
+            <SearchTableItem title= {e.CID + " : " + e.CEname} data = {e.data} />
+          </li>
+        ))  }
       </div>
     </Layout>
   </Layout>)

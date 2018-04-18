@@ -8,7 +8,7 @@ const columns = [
   },
   {
     title: "Day",
-    dataIndex: "day"
+    dataIndex: "Sday"
   },
   {
     title: "Time",
@@ -16,12 +16,17 @@ const columns = [
   },
   {
     title: "Teacher",
-    dataIndex: "TFName"
+    dataIndex: "TFname"
+  },
+  {
+    title: "Room",
+    dataIndex : "room"
   },
   {
     title: "Number of Enroll",
-    dataIndex: "count"
+    dataIndex: "enroll"
   }
+
 ];
 
 const data = [
@@ -47,9 +52,32 @@ class SearchTableItem extends Component {
   constructor(props) {
     super(props);
     this.props = props;
+
   }
 
   render() {
+    let newData = this.props.data.map(e => {
+      let obj = {...e};
+      obj["room"] = e.BABname + " " + e.roomNumber;
+      obj["time"] = e.starttime+" - "+e.endtime;
+      obj["enroll"] = e.currentNumberStudent + "/" + e.maxnumberstudent;
+      return obj;
+    })  ;
+    let prevSec = 1;
+    let useData = [];
+    useData.push(newData[0]);
+    for(var i = 1 ; i < newData.length ; i++){
+      let check = true;
+      if(newData[i].secnumber === prevSec){
+        useData[useData.length-1].Sday = useData[useData.length-1].Sday + ", " + newData[i].Sday;
+        check = false;
+      }
+      prevSec = newData[i].secnumber;
+      if(check){
+        useData.push(newData[i]);
+      }
+    }
+    console.log(useData)
     return (
       <div style={{ padding: "10px" }}>
         <Card
@@ -58,8 +86,9 @@ class SearchTableItem extends Component {
           style={{ width: "80%" }}
         >
           <Table
+            rowKey = "secnumber"
             columns={columns}
-            dataSource={data}
+            dataSource={useData}
             size="middle"
             pagination={false}
           />
