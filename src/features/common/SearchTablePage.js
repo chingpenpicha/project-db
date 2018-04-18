@@ -14,7 +14,7 @@ const mapStateToProps = state => {
     courseName: state.search.courseName,
     CID: state.search.CID,
     academicYear: state.search.academicYear,
-    semester: state.search.semester,
+    term: state.search.term,
     searchResult: state.search.searchResult
   }}
 

@@ -12,12 +12,16 @@ const GET_REGISTW_FULFILLED = "GET_REGISTW_FULFILLED"
 const WITHDRAW_COURSE = "WITHDRAW_COURSE"
 const WITHDRAW_COURSE_FULFILLED = "WITHDRAW_COURSE_FULFILLED"
 const MENU = "MENU"
-const MENU6 = "MENU6"
+const MENU1 = "MENU1"
 const MENU2 = "MENU2"
-const MENU3 = "MENU3"
-const MENU5 = "MENU5"
+const MENU4 = "MENU4"
+const MENU6 = "MENU6"
 const GET_GRADE = "GET_GRADE"
 const GET_GRADE_FULFILLED = "GET_GRADE_FULFILLED"
+const PAYMENT = "PAYMENT"
+const PAYMENT_FULFILLED = "PAYMENT_FULFILLED"
+
+
 
 const initialState = {
   queryRegist: "true",
@@ -26,6 +30,7 @@ const initialState = {
   dropCourse : [],
   courseRegist: "-",
   courseRegistW: "-",
+  paymentStatus: [],
   ci0 : "",st0 : "",
   ci1 : "",st1 : "",
   ci2 : "",st2 : "",
@@ -82,6 +87,13 @@ export default (state = initialState ,action) => {
         [action.key]: action.value
       };
 
+    case PAYMENT_FULFILLED:
+      return {
+        ...state,
+        paymentStatus : action.payload
+
+
+      };
     case CONFIRM_REGIST_FULFILLED:
       return {
         ...state,
@@ -109,9 +121,17 @@ export default (state = initialState ,action) => {
        }
 
      case WITHDRAW_COURSE_FULFILLED :
+     console.log("INNNN")
       return {
         ...state,
         queryRegistW : "true"
+      }
+
+      case MENU1: {
+        return {
+          ...state,
+          queryRegist : "true"
+        }
       }
 
      case MENU6:
@@ -137,12 +157,12 @@ export default (state = initialState ,action) => {
           queryRegistW : "true",
           dropCourse: []
         }
-      case MENU5:
+      case MENU6:
         return{
           ...state,
           searchResult : []
         }
-      case MENU3:
+      case MENU4:
         return{
           ...state,
           queryGrade : "true"
@@ -192,7 +212,7 @@ export const getRegist = (userId) => ({
   type: GET_REGIST,
   payload: axios.post('http://localhost:8000/getRegSubject',{
         studentId : userId,
-    })
+})
     .then(function(response) {
       return response.data.courseRegist
     })
@@ -228,6 +248,8 @@ export const getRegistW = (userId) => ({
       studentId : userId,
       courseWithdraw : courseWithdraw,
     }).then(function(response){
+      console.log("PASJDPSADHSOAB")
+      console.log(response)
     })
   })
 
@@ -237,6 +259,13 @@ export const getRegistW = (userId) => ({
       studentId : userId
     }).then(function(response){
       console.log(response)
-      return response.data.studentGrade
-    })
+      return response.data.studentGrade    })
   })
+ export const getPayment = (userId) => ({
+   type : PAYMENT,
+   payload : axios.post('http://localhost:8000/getPayment',{
+      studentId : userId
+   }).then(function(response){
+     return response.data.payment
+   })
+ })

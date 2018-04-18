@@ -87,21 +87,26 @@ class LeftSider extends React.Component {
               <span className="nav-text">เพิ่ม/ลด</span>
             </Menu.Item>
             <Menu.Item key="3">
+              <Link to={"/student/" + this.props.userId + "/payment"} />
+              <Icon type="edit" />
+              <span className="nav-text">ชำระค่าเล่าเรียน</span>
+            </Menu.Item>
+            <Menu.Item key="4">
               <Link to={"/student/" + this.props.userId + "/gradeResult"} />
               <Icon type="profile" />
               <span className="nav-text">ผลการเรียน</span>
             </Menu.Item>
-            <Menu.Item key="4">
+            <Menu.Item key="5">
               <Link to={"/student/" + this.props.userId + "/documentRequest"} />
               <Icon type="form" />
               <span className="nav-text">ขอใบคำร้อง</span>
             </Menu.Item>
-            <Menu.Item key="5">
+            <Menu.Item key="6">
               <Link to={"/student/" + this.props.userId + "/searchTable"} />
               <Icon type="table" />
               <span className="nav-text">ตารางเรียน</span>
             </Menu.Item>
-            <Menu.Item key="6">
+            <Menu.Item key="7">
               <Link to="/" />
               <Icon type="logout" />
               <span className="nav-text">Logout</span>

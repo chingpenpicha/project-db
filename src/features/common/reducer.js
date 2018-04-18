@@ -2,8 +2,8 @@ import axios from "axios";
 
 const SET_FIELD = "SET_FIELD";
 const SET_TYPE = "SET_TYPE";
-const SEARCH_COURSE = "SEARCH_COURSE"
-const SEARCH_COURSE_FULFILLED = "SEARCH_COURSE_FULFILLED"
+const SEARCH_COURSE = "SEARCH_COURSE";
+const SEARCH_COURSE_FULFILLED = "SEARCH_COURSE_FULFILLED";
 
 const initialState = {
   CID : "",
