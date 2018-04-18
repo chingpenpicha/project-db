@@ -4,7 +4,7 @@ import { getPayment } from "./reducer";
 import { Layout, Table } from "antd";
 
 const { Header } = Layout;
-//import "./Search.css";
+
 const mapStateToProps = state => {
   return {
     FName: state.login.userInformation.Fname,

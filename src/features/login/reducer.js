@@ -68,7 +68,7 @@ export const loginVerifyStudent = (username,password) => ({
     })
   });
 
-  export const loginVerifyTeacher = (username, password) => ({
+export const loginVerifyTeacher = (username, password) => ({
   type: LOGIN_VERIFY,
   payload: axios
     .post("http://localhost:8000/teacher_reg", {
@@ -76,7 +76,6 @@ export const loginVerifyStudent = (username,password) => ({
       password: password
     })
     .then(function(response) {
-      console.log(username);
       if (response.data.valid == "true") {
         return response.data;
       } else {
@@ -88,4 +87,4 @@ export const loginVerifyStudent = (username,password) => ({
         };
       }
     })
-});
+  });

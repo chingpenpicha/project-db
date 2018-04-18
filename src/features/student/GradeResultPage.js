@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Layout } from "antd";
-import MyQuery from "./query";
 
 import GradeTable from "./GradeTable";
 import {setField} from "./reducer"

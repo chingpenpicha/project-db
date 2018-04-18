@@ -20,21 +20,6 @@ const columns = [
   }
 ];
 
-const data = [
-     {
-       courseId: "213112",
-       courseName: "DB",
-       credit: "3",
-       grade: "A"
-     },
-     {
-       courseId: "211111",
-       courseName: "SA",
-       credit: "3",
-       grade: "A"
-     }
-   ];
-
 class GradeTable extends Component {
   constructor(props) {
     super(props);

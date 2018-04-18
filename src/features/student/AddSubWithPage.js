@@ -56,11 +56,11 @@ class AddSubWithPage extends React.Component {
 
   rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
+      /*console.log(
         `selectedRowKeys: ${selectedRowKeys}`,
         "selectedRows: ",
         selectedRows
-      );
+      );*/
       this.props.setField("dropCourse", selectedRows);
     },
     getCheckboxProps: record => ({

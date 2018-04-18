@@ -4,7 +4,6 @@ import "./LeftSider.css";
 import { setField,menu,getRegist, getRegistW, getGrade } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
-import MyQuery from "./query";
 import { bindActionCreators } from "redux";
 
 const { Header, Sider } = Layout;
@@ -53,10 +52,6 @@ class LeftSider extends React.Component {
       }
     return (
       <Layout>
-        <MyQuery
-          setField={(key, value) => this.props.setField(key, value)}
-          type="leftSider"
-        />
         <Sider
           style={{
             overflow: "auto",

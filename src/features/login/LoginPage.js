@@ -10,8 +10,6 @@ import { Layout } from "antd";
 import NormalLoginForm from "./NormalLoginForm";
 const { Sider, Content, Footer } = Layout;
 
-//import "./Search.css";
-
 const enhance = connect(
   state => ({
     userId: state.login.userId,

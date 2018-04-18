@@ -10,19 +10,6 @@ class DynamicRule extends React.Component {
       }
     });
   };
-  onChangeCID(state, value) {
-    return {
-      ...state,
-      CID: value
-    };
-  }
-
-  onChangesecnumber(state, value) {
-    return {
-      ...state,
-      secnumber: value
-    };
-  }
 
   render() {
     const { getFieldDecorator } = this.props.form;

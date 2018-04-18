@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const SET_FIELD = "SET_FIELD";
-const SET_TYPE = "SET_TYPE";
+
 const SEARCH_COURSE = "SEARCH_COURSE";
 const SEARCH_COURSE_FULFILLED = "SEARCH_COURSE_FULFILLED";
 
@@ -14,7 +14,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case SET_FIELD:
       return {
@@ -32,7 +31,7 @@ export default (state = initialState, action) => {
   }
 };
 
-export const setField = (key, value) => ({
+export const setFieldS = (key, value) => ({
   type: SET_FIELD,
   key,
   value
@@ -47,9 +46,6 @@ export const searchCourse = (CID,courseName,academicYear,semester) => ({
     academicyear : academicYear,
     term : semester
   }).then(function(response){
-    console.log(CID)
-    console.log("HEREREREREREREREERERERERERRE")
-    console.log(response)
     return response.data.response
   })
-})
+});

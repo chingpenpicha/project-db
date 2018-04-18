@@ -4,7 +4,6 @@ import { setField } from "./reducer";
 import { Layout } from "antd";
 
 const { Footer } = Layout;
-//import "./Search.css";
 
 const enhance = connect(state => ({}), { setField });
 

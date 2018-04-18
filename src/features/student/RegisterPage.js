@@ -7,8 +7,6 @@ import { bindActionCreators } from "redux";
 
 const { Header, Footer } = Layout;
 
-//var cr0={CID : "", CABname : "", secnumber : "",credit : "" };
-
 const mapStateToProps = state => {
   return {
     courseRegist: state.student.courseRegist,
