@@ -11,34 +11,6 @@ class DynamicRule extends React.Component {
       }
     });
   };
-  onChangeCID(state, value) {
-    return {
-      ...state,
-      CID: value
-    };
-  }
-
-  onChangeCABName(state, value) {
-    return {
-      ...state,
-      CABname: value
-    };
-  }
-
-  onChangeAcademicYear(state, value) {
-    return {
-      ...state,
-      academicyear: value
-    };
-  }
-
-  onChangeSemester(state, value) {
-    return {
-      ...state,
-      term: value
-    };
-  }
-
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -55,7 +27,7 @@ class DynamicRule extends React.Component {
           <FormItem label="Course Name">
             <Input
               placeholder="Course Name"
-              onChange={e => this.props.onChangeCABName(e.target.value)}
+              onChange={e => this.props.onChangeCourseName(e.target.value)}
             />
           </FormItem>
         </Col>
@@ -71,7 +43,7 @@ class DynamicRule extends React.Component {
             })(
               <Input
                 placeholder="Year"
-                onChange={e => this.props.onChangeAcademicYear(e.target.value)}
+                onChange={e => this.props.onChangeAcademyYear(e.target.value)}
               />
             )}
           </FormItem>
@@ -86,10 +58,12 @@ class DynamicRule extends React.Component {
                 }
               ]
             })(
-              <Select placeholder="Semester" style={{ width: 150 }}>
-                <Option value="1">1st Semester</Option>
-                <Option value="2">2nd Semester</Option>
-                <Option value="3">Summer</Option>
+              <Select placeholder="Semester"
+               onChange = {e => this.props.onChangeSemester(e)}
+               style={{ width: 150 }}>
+                <Option value="1"> 1st Semester </Option>
+                <Option value="2"> 2nd Semester </Option>
+                <Option value="3"> Summer </Option>
               </Select>
             )}
           </FormItem>
@@ -100,7 +74,12 @@ class DynamicRule extends React.Component {
               marginTop: 39
             }}
           >
-            <Button type="primary">Search</Button>
+            <Button
+                onClick = {e => this.props.search()}
+                type="primary"
+              >
+                Search
+            </Button>
           </FormItem>
         </Col>
       </Row>

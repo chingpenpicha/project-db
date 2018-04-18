@@ -6,10 +6,15 @@ const SEARCH_COURSE = "SEARCH_COURSE"
 const SEARCH_COURSE_FULFILLED = "SEARCH_COURSE_FULFILLED"
 
 const initialState = {
+  CID : "",
+  courseName : "",
+  academicYear : "",
+  semester : "",
   searchResult : []
 };
 
 export default (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case SET_FIELD:
       return {
@@ -21,11 +26,6 @@ export default (state = initialState, action) => {
         ...state,
 
       }
-    case SET_TYPE:
-      return {
-        ...state,
-        userType: action.userT
-      };
     default:
       return state;
   }
@@ -37,19 +37,16 @@ export const setField = (key, value) => ({
   value
 });
 
-export const setType = userT => ({
-  type: SET_TYPE,
-  userT
-});
 
-export const searchCourse = (CID,courseName,academicYear,semester) => ({
+export const searchCourse = (CID,courseName,academicYear,term) => ({
   type : SEARCH_COURSE,
   payload : axios.post('http://localhost:8000/searchCourse',{
     CID : CID,
-    cname : courseName,
-    academicYear : academicYear,
-    semester : semester
+    CEname : courseName,
+    academicyear : academicYear,
+    term : term
   }).then(function(response){
+    console.log(CID)
     console.log("HEREREREREREREREERERERERERRE")
     console.log(response)
     return response.data.searchResult

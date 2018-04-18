@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField,confirmRegist,dropCourse,withDrawCourse } from "./reducer";
+import { setField,confirmRegist,dropCourse,withDrawCourse, addSubject } from "./reducer";
 import WrappedDynamicRule from "./registerForm";
 import { bindActionCreators } from 'redux'
 import { Layout, Table, Row, Col, Button, Form, Popconfirm } from "antd";
@@ -22,6 +22,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        addSubject : bindActionCreators(addSubject,dispatch),
         setField: bindActionCreators(setField, dispatch),
         confirmRegist : bindActionCreators(confirmRegist, dispatch),
         dropCourse : bindActionCreators(dropCourse,dispatch),
@@ -169,7 +170,7 @@ class AddSubWithPage extends React.Component {
 
             <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
               <Button style={{ width: 100 }} type="primary" htmlType="submit"
-                onClick = {e => this.props.confirmRegist(this.props.courseRegistTmp,this.props.userId)}
+                onClick = {e => this.props.addSubject(this.props.courseRegistTmp,this.props.userId)}
               >
                 Save
               </Button>

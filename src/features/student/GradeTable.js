@@ -4,11 +4,11 @@ import { Card, Table } from "antd";
 const columns = [
   {
     title: "CourseId",
-    dataIndex: "courseId"
+    dataIndex: "CID"
   },
   {
     title: "CourseName",
-    dataIndex: "courseName"
+    dataIndex: "CTname"
   },
   {
     title: "Credit",
@@ -50,7 +50,7 @@ class GradeTable extends Component {
          <Table
            rowKey = "courseId"
            columns={columns}
-           dataSource={data}
+           dataSource={this.props.gradeResult}
            size="middle"
            pagination={false}
          />

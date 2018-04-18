@@ -149,6 +149,7 @@ export default (state = initialState ,action) => {
         }
 
       case GET_GRADE_FULFILLED:
+        console.log(action.payload)
         return{
           ...state,
           gradeResult : action.payload
@@ -169,6 +170,17 @@ export const confirmRegist = (courseRegist,userId) => ({
   type: CONFIRM_REGIST,
   courseRegist,
   payload: axios.post('http://localhost:8000/saveReg',{
+        courseRegist : courseRegist,
+        studentId : userId,
+    })
+    .then(function(response) {
+    })
+});
+
+export const addSubject = (courseRegist,userId) => ({
+  type: CONFIRM_REGIST,
+  courseRegist,
+  payload: axios.post('http://localhost:8000/addSubject',{
         courseRegist : courseRegist,
         studentId : userId,
     })
@@ -224,6 +236,7 @@ export const getRegistW = (userId) => ({
     payload : axios.post('http://localhost:8000/getGrade',{
       studentId : userId
     }).then(function(response){
+      console.log(response)
       return response.data.studentGrade
     })
   })
