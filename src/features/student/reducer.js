@@ -16,6 +16,7 @@ const MENU1 = "MENU1"
 const MENU2 = "MENU2"
 const MENU4 = "MENU4"
 const MENU6 = "MENU6"
+const MENU7 = "MENU7"
 const GET_GRADE = "GET_GRADE"
 const GET_GRADE_FULFILLED = "GET_GRADE_FULFILLED"
 const PAYMENT = "PAYMENT"
@@ -134,7 +135,7 @@ export default (state = initialState ,action) => {
         }
       }
 
-     case MENU6:
+     case MENU7:
         return {
           ...state,
           queryRegist: "true",

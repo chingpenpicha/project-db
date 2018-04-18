@@ -62,7 +62,7 @@ class SearchTableItem extends Component {
       obj["time"] = e.starttime+" - "+e.endtime;
       obj["enroll"] = e.currentNumberStudent + "/" + e.maxnumberstudent;
       return obj;
-    })  ;
+    })  ;/*
     let prevSec = 1;
     let useData = [];
     useData.push(newData[0]);
@@ -77,7 +77,7 @@ class SearchTableItem extends Component {
         useData.push(newData[i]);
       }
     }
-    console.log(useData)
+    console.log(useData)*/
     return (
       <div style={{ padding: "10px" }}>
         <Card
@@ -88,7 +88,7 @@ class SearchTableItem extends Component {
           <Table
             rowKey = "secnumber"
             columns={columns}
-            dataSource={useData}
+            dataSource={newData}
             size="middle"
             pagination={false}
           />
