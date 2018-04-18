@@ -87,7 +87,7 @@ class registering extends React.Component {
               paddingRight: 100
             }}
           >
-            <h3>ปีการศึกษา 2555 เทอม 2</h3>
+            <h3>ปีการศึกษา 2017 เทอม 2</h3>
             <Table
               columns={columns}
               dataSource={this.props.courseRegist}

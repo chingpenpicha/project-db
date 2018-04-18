@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./LeftSider.css";
-import { setField, menu, getRegist } from "./reducer";
+import { setField,menu,getRegist, getRegistW, getGrade } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 import MyQuery from "./query";
@@ -16,17 +16,21 @@ const mapStateToProps = state => {
     LName: state.login.userInformation.Lname,
     userId: state.login.userIdTmp,
     studentFaculty: state.login.userInformation.faculty,
-    queryRegist: state.student.queryRegist
-  };
-};
+    queryRegist : state.student.queryRegist,
+    queryRegistW : state.student.queryRegistW,
+    queryGrade : state.student.queryGrade
+  }
+}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setField: bindActionCreators(setField, dispatch),
-    menu: bindActionCreators(menu, dispatch),
-    getRegist: bindActionCreators(getRegist, dispatch)
+  const mapDispatchToProps = (dispatch,) => {
+    return {
+      setField: bindActionCreators(setField, dispatch),
+      menu: bindActionCreators(menu, dispatch),
+      getRegist : bindActionCreators(getRegist, dispatch),
+      getRegistW : bindActionCreators(getRegistW, dispatch),
+      getGrade : bindActionCreators(getGrade,dispatch)
+    }
   };
-};
 
 class LeftSider extends React.Component {
   constructor(props) {
@@ -34,11 +38,19 @@ class LeftSider extends React.Component {
     this.props = props;
   }
 
-  render() {
-    if (this.props.queryRegist === "true") {
-      this.props.setField("queryRegist", "false");
-      this.props.getRegist(this.props.userId);
-    }
+    render(){
+      if(this.props.queryRegist === "true"){
+        this.props.setField("queryRegist","false")
+        this.props.getRegist(this.props.userId)
+      }
+      if(this.props.queryRegistW === "true"){
+        this.props.setField("queryRegistW","false")
+        this.props.getRegistW(this.props.userId)
+      }
+      if(this.props.queryGrade === "true"){
+        this.props.setField("queryGrade","false")
+        this.props.getGrade(this.props.userId)
+      }
     return (
       <Layout>
         <MyQuery
