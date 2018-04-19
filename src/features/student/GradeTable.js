@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Card, Table } from "antd";
 
 const columns = [
@@ -21,45 +21,47 @@ const columns = [
 ];
 
 const data = [
-     {
-       courseId: "213112",
-       courseName: "DB",
-       credit: "3",
-       grade: "A"
-     },
-     {
-       courseId: "211111",
-       courseName: "SA",
-       credit: "3",
-       grade: "A"
-     }
-   ];
+  {
+    courseId: "213112",
+    courseName: "DB",
+    credit: "3",
+    grade: "A"
+  },
+  {
+    courseId: "211111",
+    courseName: "SA",
+    credit: "3",
+    grade: "A"
+  }
+];
 
 class GradeTable extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-
   }
 
-
-  render(){
-    return(
-     <div style={{ padding: "10px" }}>
-       <Card title={this.props.title} bordered={false} style={{ width: "80%" }}>
-         <Table
-           rowKey = "courseId"
-           columns={columns}
-           dataSource={this.props.gradeResult}
-           size="middle"
-           pagination={false}
-         />
-       </Card>
+  render() {
+    return (
+      <div style={{ padding: "10px" }}>
+        <Card
+          title={this.props.title}
+          bordered={false}
+          style={{ width: "80%" }}
+        >
+          <Table
+            rowKey="courseId"
+            columns={columns}
+            dataSource={this.props.gradeResult}
+            size="middle"
+            pagination={false}
+          />
+          <h3 style={{ marginTop: 20, textAlign: "right" }}>
+            GPA : <b style={{ color: "#4b738e" }}>3.32</b>
+          </h3>
+        </Card>
       </div>
     );
   }
-
-
-
 }
 export default GradeTable;

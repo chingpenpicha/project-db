@@ -4,7 +4,7 @@ import { Layout } from "antd";
 import MyQuery from "./query";
 
 import GradeTable from "./GradeTable";
-import {setField} from "./reducer"
+import { setField } from "./reducer";
 
 const { Header } = Layout;
 
@@ -14,9 +14,9 @@ const enhance = connect(
     LName: state.login.userInformation.Lname,
     userId: state.login.userIdTmp,
     studentFaculty: state.login.userInformation.faculty,
-    gradeResult : state.student.gradeResult
+    gradeResult: state.student.gradeResult
   }),
-  {setField}
+  { setField }
 );
 
 const GradeResultPage = props => (
@@ -25,7 +25,7 @@ const GradeResultPage = props => (
       style={{
         background: "#fff",
         textAlign: "center",
-        marginLeft: 200,
+        marginLeft: 300,
         marginTop: 20
       }}
     >
@@ -38,14 +38,20 @@ const GradeResultPage = props => (
         padding: 10
       }}
     >
-    {props.gradeResult.map(e => (
-      <li key = {e.academicyear + " " + e.term}>
-        <GradeTable title= { "ปีการศึกษา " + e.academicyear + " ภาคเรียนที่ " + e.term } gradeResult = {e.courseGrade} />
-      </li>
-    ))  }
-
-
+      {props.gradeResult.map(e => (
+        <li key={e.academicyear + " " + e.term}>
+          <GradeTable
+            title={"ปีการศึกษา " + e.academicyear + " ภาคเรียนที่ " + e.term}
+            gradeResult={e.courseGrade}
+          />
+        </li>
+      ))}
     </Layout>
+
+    <h2 style={{ textAlign: "right" }}>
+      GPAX :
+      <b style={{ marginTop: 20, marginRight: 250, color: "#253947" }}>3.99</b>
+    </h2>
   </Layout>
 );
 

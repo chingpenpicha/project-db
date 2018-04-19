@@ -49,7 +49,7 @@ class PaymentPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log("first get");
+    console.log("first get payment");
     this.props.getPayment(this.props.userId);
   }
 
