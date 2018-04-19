@@ -39,7 +39,7 @@ const REQUEST_DOC = "REQUEST_DOC";
 const REQUEST_DOC_FULFILLED = "REQUEST_DOC_FULFILLED";
 
 const initialState = {
-  queryDoc: "true",
+  queryDoc: "false",
   queryRegist: "true",
   queryRegistW: "true",
   queryGrade: "true",
@@ -176,6 +176,24 @@ export default (state = initialState, action) => {
       return {
         ...state,
         gradeResult: action.payload
+      };
+
+    case GET_DOC_FULFILLED:
+      return {
+        ...state,
+        docStatus: action.payload
+      };
+
+    case REQUEST_DOC_FULFILLED:
+      return {
+        ...state,
+        queryDoc: "true"
+      };
+
+    case SET_DOC_NAME:
+      return {
+        ...state,
+        docName: action.value
       };
 
     default:

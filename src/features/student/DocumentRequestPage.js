@@ -45,6 +45,11 @@ class DocumentRequestPage extends React.Component {
     this.props = props;
   }
 
+  componentDidMount() {
+    console.log("first get doc");
+    this.props.getDoc(this.props.userId);
+  }
+
   render() {
     return (
       <Layout style={{ background: "#fff" }}>

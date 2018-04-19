@@ -3,7 +3,8 @@ import "./LeftSider.css";
 import WrappedDynamicRule from "./SearchTableForm";
 import SearchTableItem from "./SearchTableItem";
 import { connect } from "react-redux";
-import { setField, searchCourse } from "./reducer";
+import { setFieldS, searchCourse } from "./reducer";
+import { setField } from "../student/reducer";
 import { Layout } from "antd";
 import { bindActionCreators } from "redux";
 
@@ -15,13 +16,15 @@ const mapStateToProps = state => {
     CID: state.search.CID,
     academicYear: state.search.academicYear,
     semester: state.search.semester,
-    searchResult: state.search.searchResult
+    searchResult: state.search.searchResult,
+    clearSearch: state.student.clearSearch
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
     setField: bindActionCreators(setField, dispatch),
+    setFieldS: bindActionCreators(setFieldS, dispatch),
     searchCourse: bindActionCreators(searchCourse, dispatch)
   };
 };
@@ -33,6 +36,10 @@ class SearchTablePage extends React.Component {
   }
 
   render() {
+    if (this.props.clearSearch === "true") {
+      this.props.setField("clearSearch", false);
+      this.props.setFieldS("searchResult", []);
+    }
     return (
       <Layout style={{ background: "#fff" }}>
         <Header
@@ -56,14 +63,16 @@ class SearchTablePage extends React.Component {
         >
           <div>
             <WrappedDynamicRule
-              onChangeCID={value => this.props.setField("CID", value)}
+              onChangeCID={value => this.props.setFieldS("CID", value)}
               onChangeCourseName={value =>
-                this.props.setField("courseName", value)
+                this.props.setFieldS("courseName", value)
               }
               onChangeAcademyYear={value =>
-                this.props.setField("academicYear", value)
+                this.props.setFieldS("academicYear", value)
               }
-              onChangeSemester={value => this.props.setField("semester", value)}
+              onChangeSemester={value =>
+                this.props.setFieldS("semester", value)
+              }
               search={() =>
                 this.props.searchCourse(
                   this.props.CID,
