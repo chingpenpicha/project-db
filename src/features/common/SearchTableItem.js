@@ -28,11 +28,24 @@ const columns = [
   }
 ];
 
-const newData = data.map(e => {
-  let obj = { ...e };
-  obj["time"] = e.startTime + " - " + e.endTime;
-  return obj;
-});
+const data = [
+  {
+    key: "1",
+    secnumber: "1",
+    day: "Mon,Wed",
+    time: "8.00-16.00",
+    TFName: "นานา",
+    count: "20/30"
+  },
+  {
+    key: "2",
+    secnumber: "2",
+    day: "Tue,Thu",
+    time: "9.00-17.00",
+    TFName: "อาอา",
+    count: "10/40"
+  }
+];
 
 class SearchTableItem extends Component {
   constructor(props) {
@@ -43,7 +56,6 @@ class SearchTableItem extends Component {
   render() {
     let newData = this.props.data.map(e => {
       let obj = { ...e };
-      obj["key"] = e.secnumber + " " + e.roomNumber;
       obj["room"] = e.BABname + " " + e.roomNumber;
       obj["time"] = e.starttime + " - " + e.endtime;
       obj["enroll"] = e.currentNumberStudent + "/" + e.maxnumberstudent;
@@ -72,6 +84,7 @@ class SearchTableItem extends Component {
           style={{ width: "80%" }}
         >
           <Table
+            rowKey="secnumber"
             columns={columns}
             dataSource={newData}
             size="middle"

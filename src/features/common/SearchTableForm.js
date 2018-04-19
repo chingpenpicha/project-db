@@ -58,9 +58,11 @@ class DynamicRule extends React.Component {
                 }
               ]
             })(
-              <Select placeholder="Semester"
-               onChange = {e => this.props.onChangeSemester(e)}
-               style={{ width: 150 }}>
+              <Select
+                placeholder="Semester"
+                onChange={e => this.props.onChangeSemester(e)}
+                style={{ width: 150 }}
+              >
                 <Option value="1"> 1st Semester </Option>
                 <Option value="2"> 2nd Semester </Option>
                 <Option value="3"> Summer </Option>
@@ -74,11 +76,8 @@ class DynamicRule extends React.Component {
               marginTop: 39
             }}
           >
-            <Button
-                onClick = {e => this.props.search()}
-                type="primary"
-              >
-                Search
+            <Button onClick={e => this.props.search()} type="primary">
+              Search
             </Button>
           </FormItem>
         </Col>

@@ -2,33 +2,33 @@ import axios from "axios";
 
 const SET_FIELD = "SET_FIELD";
 
-const MENU = "MENU"
-const MENU1 = "MENU1"
-const MENU2 = "MENU2"
-const MENU4 = "MENU4"
-const MENU6 = "MENU6"
-const MENU7 = "MENU7"
+const MENU = "MENU";
+const MENU1 = "MENU1";
+const MENU2 = "MENU2";
+const MENU4 = "MENU4";
+const MENU6 = "MENU6";
+const MENU7 = "MENU7";
 
-const GET_REGIST_FULFILLED = "GET_REGIST_FULFILLED"
-const GET_REGIST = "GET_REGIST"
+const GET_REGIST_FULFILLED = "GET_REGIST_FULFILLED";
+const GET_REGIST = "GET_REGIST";
 
-const CONFIRM_REGIST = "CONFIRM_REGIST"
-const CONFIRM_REGIST_FULFILLED = "CONFIRM_REGIST_FULFILLED"
+const CONFIRM_REGIST = "CONFIRM_REGIST";
+const CONFIRM_REGIST_FULFILLED = "CONFIRM_REGIST_FULFILLED";
 
-const DROP_COURSE = "DROP_COURSE"
-const DROP_COURSE_FULFILLED = "DROP_COURSE_FULFILLED"
+const DROP_COURSE = "DROP_COURSE";
+const DROP_COURSE_FULFILLED = "DROP_COURSE_FULFILLED";
 
-const GET_REGISTW = "GET_REGISTW"
-const GET_REGISTW_FULFILLED = "GET_REGISTW_FULFILLED"
+const GET_REGISTW = "GET_REGISTW";
+const GET_REGISTW_FULFILLED = "GET_REGISTW_FULFILLED";
 
-const WITHDRAW_COURSE = "WITHDRAW_COURSE"
-const WITHDRAW_COURSE_FULFILLED = "WITHDRAW_COURSE_FULFILLED"
+const WITHDRAW_COURSE = "WITHDRAW_COURSE";
+const WITHDRAW_COURSE_FULFILLED = "WITHDRAW_COURSE_FULFILLED";
 
-const GET_GRADE = "GET_GRADE"
-const GET_GRADE_FULFILLED = "GET_GRADE_FULFILLED"
+const GET_GRADE = "GET_GRADE";
+const GET_GRADE_FULFILLED = "GET_GRADE_FULFILLED";
 
-const PAYMENT = "PAYMENT"
-const PAYMENT_FULFILLED = "PAYMENT_FULFILLED"
+const PAYMENT = "PAYMENT";
+const PAYMENT_FULFILLED = "PAYMENT_FULFILLED";
 
 const SET_DOC_NAME = "SET_DOC_NAME";
 
@@ -38,29 +38,38 @@ const GET_DOC_FULFILLED = "GET_DOC_FULFILLED";
 const REQUEST_DOC = "REQUEST_DOC";
 const REQUEST_DOC_FULFILLED = "REQUEST_DOC_FULFILLED";
 
-
 const initialState = {
-  queryDoc: "false",
+  queryDoc: "true",
   queryRegist: "true",
   queryRegistW: "true",
-  queryGrade : "true",
-  clearSearch : "true",
-  dropCourse : [],
+  queryGrade: "true",
+  dropCourse: [],
+  docName: "",
   courseRegist: "-",
   courseRegistW: "-",
   paymentStatus: [],
-  ci0 : "",st0 : "",
-  ci1 : "",st1 : "",
-  ci2 : "",st2 : "",
-  ci3 : "",st3 : "",
-  ci4 : "",st4 : "",
-  ci5 : "",st5 : "",
-  ci6 : "",st6 : "",
-  ci7 : "",st7 : "",
-  ci8 : "",st8 : "",
-  ci9 : "",st9 : "",
-  gradeResult : []
-
+  docStatus: [],
+  ci0: "",
+  st0: "",
+  ci1: "",
+  st1: "",
+  ci2: "",
+  st2: "",
+  ci3: "",
+  st3: "",
+  ci4: "",
+  st4: "",
+  ci5: "",
+  st5: "",
+  ci6: "",
+  st6: "",
+  ci7: "",
+  st7: "",
+  ci8: "",
+  st8: "",
+  ci9: "",
+  st9: "",
+  gradeResult: []
 };
 
 export default (state = initialState, action) => {
@@ -74,7 +83,7 @@ export default (state = initialState, action) => {
     case PAYMENT_FULFILLED:
       return {
         ...state,
-        paymentStatus : action.payload
+        paymentStatus: action.payload
       };
 
     case CONFIRM_REGIST_FULFILLED:
@@ -103,7 +112,7 @@ export default (state = initialState, action) => {
         queryRegist: "true"
       };
 
-     case WITHDRAW_COURSE_FULFILLED :
+    case WITHDRAW_COURSE_FULFILLED:
       return {
         ...state,
         queryRegistW: "true"
@@ -116,51 +125,61 @@ export default (state = initialState, action) => {
       };
     }
 
-      case MENU2:
-        return{
-          ...state,
-          queryRegistW : "true",
-          dropCourse: []
-        }
+    case MENU2:
+      return {
+        ...state,
+        queryRegistW: "true",
+        dropCourse: []
+      };
 
-      case MENU4:
-        return{
-          ...state,
-          queryGrade : "true"
-        }
+    case MENU4:
+      return {
+        ...state,
+        queryGrade: "true"
+      };
 
-      case MENU6:
-        return{
-          ...state,
-          clearSearch : "true",
-        }
+    case MENU6:
+      return {
+        ...state,
+        clearSearch: "true"
+      };
 
-      case MENU7:
-         return {
-           ...state,
-           queryRegist: "true",
-           courseRegist: "-",
-           ci0 : "",st0 : "",
-           ci1 : "",st1 : "",
-           ci2 : "",st2 : "",
-           ci3 : "",st3 : "",
-           ci4 : "",st4 : "",
-           ci5 : "",st5 : "",
-           ci6 : "",st6 : "",
-           ci7 : "",st7 : "",
-           ci8 : "",st8 : "",
-           ci9 : "",st9 : "",
-           studentGrade : []
-       }
+    case MENU7:
+      return {
+        ...state,
+        queryRegist: "true",
+        courseRegist: "-",
+        ci0: "",
+        st0: "",
+        ci1: "",
+        st1: "",
+        ci2: "",
+        st2: "",
+        ci3: "",
+        st3: "",
+        ci4: "",
+        st4: "",
+        ci5: "",
+        st5: "",
+        ci6: "",
+        st6: "",
+        ci7: "",
+        st7: "",
+        ci8: "",
+        st8: "",
+        ci9: "",
+        st9: "",
+        studentGrade: []
+      };
 
-      case GET_GRADE_FULFILLED:
-        return{
-          ...state,
-          gradeResult : action.payload
-        }
+    case GET_GRADE_FULFILLED:
+      return {
+        ...state,
+        gradeResult: action.payload
+      };
 
-      default:
-        return state;
+    default:
+      return state;
   }
 };
 
@@ -229,38 +248,25 @@ export const dropCourse = (userId, dropCourse) => ({
     .then(function(response) {})
 });
 
-export const menu = (e) => ({
-  type : MENU + e.key,
-  e,
-})
-
-export const dropCourse = (userId,dropCourse) => ({
-  type : DROP_COURSE,
-  payload: axios.post('http://localhost:8000/dropSubject',{
-    studentId : userId,
-    dropCourse : dropCourse,
+export const withDrawCourse = (userId, courseWithdraw) => ({
+  type: WITHDRAW_COURSE,
+  payload: axios
+    .post("http://localhost:8000/withdrawSubject", {
+      studentId: userId,
+      courseWithdraw: courseWithdraw
     })
-    .then(function(response) {
-    })
+    .then(function(response) {})
 });
 
-export const withDrawCourse = (userId,courseWithdraw) => ({
-  type : WITHDRAW_COURSE,
-  payload : axios.post('http://localhost:8000/withdrawSubject',{
-    studentId : userId,
-    courseWithdraw : courseWithdraw,
-  })
-  .then(function(response){
-
-  })
-})
-
-export const getGrade = (userId) => ({
-  type : GET_GRADE,
-  payload : axios.post('http://localhost:8000/getGrade',{
-    studentId : userId
-  }).then(function(response){
-    return response.data.studentGrade    })
+export const getGrade = userId => ({
+  type: GET_GRADE,
+  payload: axios
+    .post("http://localhost:8000/getGrade", {
+      studentId: userId
+    })
+    .then(function(response) {
+      return response.data.studentGrade;
+    })
 });
 
 export const getPayment = userId => ({
@@ -300,4 +306,4 @@ export const requestDoc = (userId, docType) => ({
     .then(function(response) {
       return response.data.result;
     })
-  });
+});
