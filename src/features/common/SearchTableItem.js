@@ -8,7 +8,7 @@ const columns = [
   },
   {
     title: "Day",
-    dataIndex: "day"
+    dataIndex: "Sday"
   },
   {
     title: "Time",
@@ -16,32 +16,15 @@ const columns = [
   },
   {
     title: "Teacher",
-    dataIndex: "TFName"
+    dataIndex: "TFname"
+  },
+  {
+    title: "Room",
+    dataIndex: "room"
   },
   {
     title: "Number of Enroll",
-    dataIndex: "count"
-  }
-];
-
-const data = [
-  {
-    key: "1",
-    secnumber: "1",
-    day: "Mon,Wed",
-    startTime: "8.00",
-    endTime: "16.00",
-    TFName: "นานา",
-    count: "20/30"
-  },
-  {
-    key: "2",
-    secnumber: "2",
-    day: "Tue,Thu",
-    startTime: "9.00",
-    endTime: "17.00",
-    TFName: "อาอา",
-    count: "10/40"
+    dataIndex: "enroll"
   }
 ];
 
@@ -58,6 +41,29 @@ class SearchTableItem extends Component {
   }
 
   render() {
+    let newData = this.props.data.map(e => {
+      let obj = { ...e };
+      obj["key"] = e.secnumber + " " + e.roomNumber;
+      obj["room"] = e.BABname + " " + e.roomNumber;
+      obj["time"] = e.starttime + " - " + e.endtime;
+      obj["enroll"] = e.currentNumberStudent + "/" + e.maxnumberstudent;
+      return obj;
+    }); /*
+    let prevSec = 1;
+    let useData = [];
+    useData.push(newData[0]);
+    for(var i = 1 ; i < newData.length ; i++){
+      let check = true;
+      if(newData[i].secnumber === prevSec){
+        useData[useData.length-1].Sday = useData[useData.length-1].Sday + ", " + newData[i].Sday;
+        check = false;
+      }
+      prevSec = newData[i].secnumber;
+      if(check){
+        useData.push(newData[i]);
+      }
+    }
+    console.log(useData)*/
     return (
       <div style={{ padding: "10px" }}>
         <Card
