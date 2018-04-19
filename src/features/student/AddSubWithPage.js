@@ -1,6 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setField,confirmRegist,dropCourse,withDrawCourse, addSubject } from "./reducer";
+import {
+  setField,
+  confirmRegist,
+  dropCourse,
+  withDrawCourse,
+  addSubject
+} from "./reducer";
 import WrappedDynamicRule from "./registerForm";
 import { bindActionCreators } from "redux";
 import { Layout, Table, Row, Col, Button, Form, Popconfirm } from "antd";
@@ -19,14 +25,14 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch, props) => {
-    return {
-        addSubject : bindActionCreators(addSubject,dispatch),
-        setField: bindActionCreators(setField, dispatch),
-        confirmRegist : bindActionCreators(confirmRegist, dispatch),
-        dropCourse : bindActionCreators(dropCourse,dispatch),
-        withDrawCourse : bindActionCreators(withDrawCourse,dispatch)
-    }
-}
+  return {
+    addSubject: bindActionCreators(addSubject, dispatch),
+    setField: bindActionCreators(setField, dispatch),
+    confirmRegist: bindActionCreators(confirmRegist, dispatch),
+    dropCourse: bindActionCreators(dropCourse, dispatch),
+    withDrawCourse: bindActionCreators(withDrawCourse, dispatch)
+  };
+};
 
 const columns = [
   {
@@ -122,9 +128,12 @@ class AddSubWithPage extends React.Component {
               ลด
             </Button>
             <Popconfirm
-              onConfirm = {e => this.props.withDrawCourse(
-                this.props.userId, this.props.dropCourseVar
-              )}
+              onConfirm={e =>
+                this.props.withDrawCourse(
+                  this.props.userId,
+                  this.props.dropCourseVar
+                )
+              }
               placement="right"
               title="ต้องการยืนยันใช่หรือไม่"
               okText="ใช่"
@@ -162,12 +171,10 @@ class AddSubWithPage extends React.Component {
                 marginBottom: 15
               }}
             >
-              <Col span={8} style={{ textAlign: "Left" }}>
+              <Col span={12} style={{ textAlign: "Left" }}>
                 <b>Course ID</b>
               </Col>
-              <Col span={8} style={{ textAlign: "Left" }}>
-                <b>Course Name</b>
-              </Col>
+
               <Col span={4} style={{ textAlign: "Left" }}>
                 <b>Section</b>
               </Col>
@@ -178,9 +185,19 @@ class AddSubWithPage extends React.Component {
               onChangesecnumber={value => this.props.setField("st0", value)}
             />
 
-            <div style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}>
-              <Button style={{ width: 100 }} type="primary" htmlType="submit"
-                onClick = {e => this.props.addSubject(this.props.courseRegistTmp,this.props.userId)}
+            <div
+              style={{ paddingRight: 200, marginTop: 10, textAlign: "center" }}
+            >
+              <Button
+                style={{ width: 100 }}
+                type="primary"
+                htmlType="submit"
+                onClick={e =>
+                  this.props.addSubject(
+                    this.props.courseRegistTmp,
+                    this.props.userId
+                  )
+                }
               >
                 Save
               </Button>

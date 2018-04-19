@@ -29,7 +29,8 @@ const data = [
     key: "1",
     secnumber: "1",
     day: "Mon,Wed",
-    time: "8.00-16.00",
+    startTime: "8.00",
+    endTime: "16.00",
     TFName: "นานา",
     count: "20/30"
   },
@@ -37,11 +38,18 @@ const data = [
     key: "2",
     secnumber: "2",
     day: "Tue,Thu",
-    time: "9.00-17.00",
+    startTime: "9.00",
+    endTime: "17.00",
     TFName: "อาอา",
     count: "10/40"
   }
 ];
+
+const newData = data.map(e => {
+  let obj = { ...e };
+  obj["time"] = e.startTime + " - " + e.endTime;
+  return obj;
+});
 
 class SearchTableItem extends Component {
   constructor(props) {
@@ -59,7 +67,7 @@ class SearchTableItem extends Component {
         >
           <Table
             columns={columns}
-            dataSource={data}
+            dataSource={newData}
             size="middle"
             pagination={false}
           />
