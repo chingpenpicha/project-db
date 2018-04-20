@@ -42,7 +42,7 @@ class GradeTable extends Component {
             pagination={false}
           />
           <h3 style={{ marginTop: 20, textAlign: "right" }}>
-            GPA : <b style={{ color: "#4b738e" }}>3.32</b>
+            GPA : <b style={{ color: "#4b738e" }}>{this.props.gpa}</b>
           </h3>
         </Card>
       </div>
