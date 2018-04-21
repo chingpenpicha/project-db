@@ -57,7 +57,7 @@ class SeeStudentGrade extends React.Component {
       obj["title"] = e.SID;
       obj["description"] = e.TFname + " " + e.TLname;
       return obj;
-    }); 
+    });
     return(
       <Layout style={{ background: "#fff" }}>
         <Header
@@ -91,9 +91,9 @@ class SeeStudentGrade extends React.Component {
                   title={
                     <Link
                       onClick = { e => {this.props.setFieldT("studentCode",item.title)
-                    this.props.setFieldT("studentName",item.description)
-                    this.props.getGrade(item.title)
-                    } }
+                        this.props.setFieldT("studentName",item.description)
+                        this.props.getGrade(item.title)
+                      } }
                       to={this.props.match.url + `/${item.title + " - " + item.description}`}>
                         {item.title + " - " + item.description}
                     </Link>
