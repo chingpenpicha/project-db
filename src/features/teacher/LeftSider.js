@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./LeftSider.css";
-import { setField } from "./reducer";
+import { setFieldT, menu } from "./reducer";
 import { Layout, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 
@@ -14,9 +14,9 @@ const enhance = connect(
     userId: state.login.userIdTmp,
     FName: state.login.userInformation.Fname,
     LName: state.login.userInformation.Lname,
-    faculty : state.login.userInformation.faculty
+    faculty: state.login.userInformation.faculty
   }),
-  { setField }
+  { setFieldT, menu }
 );
 
 const LeftSider = props => (
@@ -29,7 +29,12 @@ const LeftSider = props => (
         style={{ height: 100, weight: 100, margin: 50 }}
         src="https://1.bp.blogspot.com/-5bPNsF5plzw/VnJWs-7RbrI/AAAAAAAARmA/DaZmn8YUjAk/s1600-r/logo_research_at_google_color_1x_web_512dp.png"
       />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
+      <Menu
+        onSelect={e => props.menu(e)}
+        theme="dark"
+        mode="inline"
+        defaultSelectedKeys={["0"]}
+      >
         <Menu.Item key="1">
           <Link to={"/teacher/" + props.userId + "/configGrade"} />
           <Icon type="edit" />

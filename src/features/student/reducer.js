@@ -45,6 +45,7 @@ const initialState = {
   queryGrade: "true",
   dropCourse: [],
   docName: "",
+  gpax: "",
   courseRegist: "-",
   courseRegistW: "-",
   paymentStatus: [],
@@ -152,7 +153,8 @@ export default (state = initialState, action) => {
     case GET_GRADE_FULFILLED:
       return {
         ...state,
-        gradeResult: action.payload
+        gradeResult: action.payload.data,
+        gpax: action.payload.gpax
       };
 
     case GET_DOC_FULFILLED:
@@ -260,7 +262,8 @@ export const getGrade = userId => ({
       studentId: userId
     })
     .then(function(response) {
-      return response.data.studentGrade;
+      console.log(response.data);
+      return { data: response.data.studentGrade, gpax: response.data.gpax };
     })
 });
 

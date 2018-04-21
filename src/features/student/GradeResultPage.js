@@ -13,7 +13,8 @@ const enhance = connect(
     LName: state.login.userInformation.Lname,
     userId: state.login.userIdTmp,
     studentFaculty: state.login.userInformation.faculty,
-    gradeResult: state.student.gradeResult
+    gradeResult: state.student.gradeResult,
+    gpax: state.student.gpax
   }),
   { setField }
 );
@@ -42,6 +43,7 @@ const GradeResultPage = props => (
           <GradeTable
             title={"ปีการศึกษา " + e.academicyear + " ภาคเรียนที่ " + e.term}
             gradeResult={e.courseGrade}
+            gpa={e.gpa}
           />
         </li>
       ))}
@@ -49,7 +51,9 @@ const GradeResultPage = props => (
 
     <h2 style={{ textAlign: "right" }}>
       GPAX :
-      <b style={{ marginTop: 20, marginRight: 250, color: "#253947" }}>3.99</b>
+      <b style={{ marginTop: 20, marginRight: 250, color: "#253947" }}>
+        {props.gpax}
+      </b>
     </h2>
   </Layout>
 );
