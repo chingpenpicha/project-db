@@ -1,5 +1,6 @@
 import axios from "axios";
 
+const LOG_OUT = "LOG_OUT";
 const SET_FIELD = "SET_FIELD";
 const SET_TYPE = "SET_TYPE";
 const LOGIN_VERIFY = "LOGIN_VERIFY";
@@ -26,6 +27,10 @@ export default (state = initialState, action) => {
         ...state,
         userType: action.userT
       };
+    case LOG_OUT:
+      return {
+        ...initialState
+      };
     case LOGIN_VERIFY_FULFILLED:
       return {
         ...state,
@@ -36,6 +41,10 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export const logOut = () => ({
+  type: LOG_OUT
+});
 
 export const setField = (key, value) => ({
   type: SET_FIELD,

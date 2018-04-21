@@ -18,7 +18,14 @@ const TeacherPage = props => (
           textAlign: "center"
         }}
       >
-        ... ยินดีต้อนรับสู่ระบบ Reg Chula Chula ...
+        <h1
+          style={{
+            marginTop: 300,
+            textAlign: "center"
+          }}
+        >
+          ... ยินดีต้อนรับสู่ระบบ Reg Chula Chula ...
+        </h1>
       </div>
 
       <Footer

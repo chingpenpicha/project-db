@@ -4,7 +4,8 @@ import {
   setField,
   setType,
   loginVerifyStudent,
-  loginVerifyTeacher
+  loginVerifyTeacher,
+  logOut
 } from "./reducer";
 import { Layout } from "antd";
 import NormalLoginForm from "./NormalLoginForm";
@@ -15,9 +16,10 @@ const enhance = connect(
     userId: state.login.userId,
     password: state.login.password,
     userType: state.login.userType,
-    loginSuccess: state.login.loginSuccess
+    loginSuccess: state.login.loginSuccess,
+    firstClick: state.login.firstClick
   }),
-  { setType, setField, loginVerifyStudent, loginVerifyTeacher }
+  { setType, setField, loginVerifyStudent, loginVerifyTeacher, logOut }
 );
 
 const StudentPage = props => (
@@ -44,6 +46,7 @@ const StudentPage = props => (
             password={props.password}
             loginSuccess={props.loginSuccess}
             userType={props.userType}
+            logOut={() => props.logOut()}
           />
         </div>
       </Content>

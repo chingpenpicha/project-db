@@ -8,6 +8,10 @@ class MyButton extends Component {
     this.props = props;
   }
 
+  componentDidMount() {
+    this.props.props.logOut();
+  }
+
   render() {
     if (this.props.props.loginSuccess == "true") {
       this.props.props.onChange("loginSuccess", "false");
@@ -63,8 +67,7 @@ class MyButton extends Component {
             marginTop: 10
           }}
         >
-          {" "}
-          Log in{" "}
+          Log in
         </Button>
       );
     }
