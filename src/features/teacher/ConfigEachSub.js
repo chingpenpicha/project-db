@@ -35,14 +35,19 @@ class ConfigEachSub extends React.Component {
     if (this.props.configStudentInSecList === "true") {
       this.studentInSecListTmpIT = 0;
       this.props.setFieldT("configStudentList", "false");
+      let useData = [];
       let newData = this.props.studentInSecList.map(e => {
         let obj = { ...e };
         obj["order"] = this.studentInSecListTmpIT;
         obj["SID"] = parseInt(e.SID);
-        this.studentInSecListTmpIT++;
+        if(obj["grade"] !== "W"){
+          useData.push(obj);
+          this.studentInSecListTmpIT++;
+        }
+        //this.studentInSecListTmpIT++;
         return obj;
       });
-      this.studentInSecListTmp = newData;
+      this.studentInSecListTmp = useData;
     }
     return (
       <Layout style={{ background: "#fff" }}>
@@ -100,6 +105,7 @@ class ConfigEachSub extends React.Component {
                   grade={e.grade}
                   onChange={value => {
                     e.grade = value;
+                    console.log(value);
                     console.log(e.order);
                     this.studentInSecListTmp[e.order] = e;
                     this.studentInSecListTmpIT++;
@@ -113,12 +119,13 @@ class ConfigEachSub extends React.Component {
             >
               <Button
                 onClick={e => {
+                  console.log("test",this.studentInSecListTmp)
                   this.props.setFieldT(
                     "studentInSecList",
                     this.studentInSecListTmp
                   );
                   this.props.saveGrade(
-                    this.props.studentInSecList,
+                    this.studentInSecListTmp,
                     this.props.CID,
                     this.props.courseDetail.academicyear,
                     this.props.courseDetail.term

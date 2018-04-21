@@ -36,7 +36,7 @@ class DynamicRule extends React.Component {
               ]
             })(
               <Select
-                onChange={e => this.props.onChange(e.target.value)}
+                onChange={e => this.props.onChange(e)}
                 showSearch
                 style={{ width: 100 }}
                 placeholder="Grade"
