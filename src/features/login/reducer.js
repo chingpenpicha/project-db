@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginSuccess: action.payload.valid,
-        userInformation: action.payload
+        userInformation: action.payload,
       };
     default:
       return state;

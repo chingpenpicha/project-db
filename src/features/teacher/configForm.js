@@ -13,19 +13,21 @@ class DynamicRule extends React.Component {
   };
 
   render() {
-    const { sid, sname } = this.props;
-    const { getFieldDecorator } = this.props.form;
+    const { sid, sname, grade } = this.props;
+    const { getFieldDecorator, setFields } = this.props.form;
+    const selectedOptions = [{ label: "grade", value: grade }];
     return (
       <Row gutter={24}>
         <Col span={6} key={1}>
           <FormItem>{sid}</FormItem>
         </Col>
         <Col span={6} key={2}>
-          <FormItem>{sname}}</FormItem>
+          <FormItem>{sname}</FormItem>
         </Col>
         <Col span={6} key={3}>
           <FormItem>
             {getFieldDecorator("grade", {
+              initialValue: selectedOptions.map(opt => opt.value),
               rules: [
                 {
                   required: true,
@@ -34,7 +36,7 @@ class DynamicRule extends React.Component {
               ]
             })(
               <Select
-                onChange={}
+                onChange={e => this.props.onChange(e.target.value)}
                 showSearch
                 style={{ width: 100 }}
                 placeholder="Grade"

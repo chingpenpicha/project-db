@@ -19,6 +19,7 @@ class MyButton extends Component {
       this.props.props.onChange("userIdTmp", this.props.props.userId);
       this.props.props.onChange("password", "");
       this.props.props.onChange("userId", "");
+      this.props.props.onChange("userType","Student");
       if (this.props.props.userType == "Student") {
         return <Redirect to={"/student/" + tmp + "/home"}>Log in</Redirect>;
       } else {

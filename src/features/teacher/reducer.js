@@ -8,18 +8,34 @@ const GET_GRADE_FULFILLED = "GET_GRADE_FULFILLED";
 const GET_STUDENT = "GETSTUDENT";
 const GETSTUDENT_FULFILLED = "GETSTUDENT_FULFILLED";
 
+const GET_COURSE = "GET_COURSE";
+const GET_COURSE_FULFILLED = "GET_COURSE_FULFILLED";
+
+const GET_STUDENT_INSEC = "GET_STUDENT_INSEC";
+const GET_STUDENT_INSEC_FULFILLED = "GET_STUDENT_INSEC_FULFILLED";
+
+const SAVE_GRADE = "SAVE_GRADE";
+const SAVE_GRADE_FULFILLED = "SAVE_GRADE_FULFILLED";
+
 const MENU = "MENU";
 const MENU2 = "MENU2";
+const MENU1 = "MENU1";
 const MENU4 = "MENU4";
 
 const initialState = {
   gradeResult: [],
   studentList: [],
+  courseList: [],
+  studentInSecList: [],
   studentName: "",
   studentCode: "",
   studentFaculty: "",
   gpax: "",
-  queryStudent: true
+  queryCourse: "true",
+  queryStudent: "true",
+  courseDetail: "",
+  configStudentInSecList: "true",
+  CID: ""
 };
 
 export default (state = initialState, action) => {
@@ -43,6 +59,19 @@ export default (state = initialState, action) => {
         studentList: action.payload
       };
 
+    case GET_STUDENT_INSEC_FULFILLED:
+      return {
+        ...state,
+        studentInSecList: action.payload,
+        configStudentInSecList: "true"
+      };
+
+    case GET_COURSE_FULFILLED:
+      return {
+        ...state,
+        courseList: action.payload
+      };
+
     case MENU2:
       return {
         ...state,
@@ -51,6 +80,17 @@ export default (state = initialState, action) => {
 
     case MENU4:
       return initialState;
+
+    case MENU1:
+      return {
+        ...state,
+        queryCourse: "true"
+      };
+
+    case SAVE_GRADE_FULFILLED:
+      return {
+        ...state
+      };
 
     default:
       return state;
@@ -87,5 +127,46 @@ export const getStudent = userId => ({
     })
     .then(function(response) {
       return response.data.student;
+    })
+});
+
+export const getCourse = userId => ({
+  type: GET_COURSE,
+  payload: axios
+    .post("http://localhost:8000/teachCourse", {
+      teacherId: userId
+    })
+    .then(function(response) {
+      return response.data.course;
+    })
+});
+
+export const getStudentInSec = (CID, academicyear, term, secnumber) => ({
+  type: GET_STUDENT_INSEC,
+  payload: axios
+    .post("http://localhost:8000/getStudentInSec", {
+      CID: CID,
+      academicyear: academicyear,
+      term: term,
+      secnumber: secnumber
+    })
+    .then(function(response) {
+      return response.data.student;
+    })
+});
+
+export const saveGrade = (studentInSecList, CID, academicyear, term) => ({
+  type: SAVE_GRADE,
+  payload: axios
+    .post("http://localhost:8000/saveGrade", {
+      CID: CID,
+      academicyear: academicyear,
+      term: term,
+      courseGrade: studentInSecList
+    })
+    .then(function(response) {
+      console.log("HERERE");
+      console.log(studentInSecList, CID, academicyear, term);
+      console.log(response);
     })
 });
