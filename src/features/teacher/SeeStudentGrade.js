@@ -8,38 +8,38 @@ import { List, Avatar, Layout } from "antd";
 const { Header } = Layout;
 
 const mapStateToProps = state => {
-  return{
-    studentList : state.teacher.studentList,
-    queryStudent : state.teacher.queryStudent,
-    userId : state.login.userIdTmp
-  }
+  return {
+    studentList: state.teacher.studentList,
+    queryStudent: state.teacher.queryStudent,
+    userId: state.login.userIdTmp
+  };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
     setFieldT: bindActionCreators(setFieldT, dispatch),
     getGrade: bindActionCreators(getGrade, dispatch),
-    getStudent : bindActionCreators(getStudent,dispatch)
+    getStudent: bindActionCreators(getStudent, dispatch)
   };
 };
 
 const data = [
   {
-    title : "5830000121",
-    description : "Demo"
+    title: "5830000121",
+    description: "Demo"
   },
   {
-    title : "5831011121",
-    description : "Demo"
+    title: "5831011121",
+    description: "Demo"
   },
   {
-    title : "5831011121",
-    description : "Demo"  },
+    title: "5831011121",
+    description: "Demo"
+  },
   {
-    title : "5831011121",
-    description : "Demo"
+    title: "5831011121",
+    description: "Demo"
   }
-
 ];
 
 class SeeStudentGrade extends React.Component {
@@ -47,10 +47,10 @@ class SeeStudentGrade extends React.Component {
     super(props);
     this.props = props;
   }
-  render(){
-    if(this.props.queryStudent === "true"){
+  render() {
+    if (this.props.queryStudent === "true") {
       this.props.getStudent(this.props.userId);
-      this.props.setFieldT("queryStudent","false");
+      this.props.setFieldT("queryStudent", "false");
     }
     let newData = this.props.studentList.map(e => {
       let obj = { ...e };

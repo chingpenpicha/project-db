@@ -5,8 +5,8 @@ const SET_FIELD = "SET_FIELD";
 const GET_GRADE = "GET_GRADE";
 const GET_GRADE_FULFILLED = "GET_GRADE_FULFILLED";
 
-const GET_STUDENT = "GETSTUDENT"
-const GETSTUDENT_FULFILLED = "GETSTUDENT_FULFILLED"
+const GET_STUDENT = "GETSTUDENT";
+const GETSTUDENT_FULFILLED = "GETSTUDENT_FULFILLED";
 
 const GET_COURSE = "GET_COURSE"
 const GET_COURSE_FULFILLED = "GET_COURSE_FULFILLED"
@@ -20,6 +20,7 @@ const SAVE_GRADE_FULFILLED = "SAVE_GRADE_FULFILLED"
 const MENU = "MENU"
 const MENU2 = "MENU2"
 const MENU1 = "MENU1"
+const MENU4 = "MENU4";
 
 const initialState = {
   gradeResult: [],
@@ -49,14 +50,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         gradeResult: action.payload.data,
-        gpax : action.payload.gpax,
+        gpax: action.payload.gpax
       };
 
     case GETSTUDENT_FULFILLED:
       return {
         ...state,
-        studentList : action.payload,
-      }
+        studentList: action.payload
+      };
 
     case GET_STUDENT_INSEC_FULFILLED:
       return {
@@ -74,8 +75,11 @@ export default (state = initialState, action) => {
     case MENU2 :
       return{
         ...state,
-        queryStudent : "true"
-      }
+        queryStudent: "true"
+      };
+
+    case MENU4:
+      return initialState;
 
     case MENU1 :
       return{
@@ -107,14 +111,14 @@ export const getGrade = userId => ({
       studentId: userId
     })
     .then(function(response) {
-      return {data : response.data.studentGrade, gpax : response.data.gpax};
+      return { data: response.data.studentGrade, gpax: response.data.gpax };
     })
 });
 
 export const menu = e => ({
-  type : MENU + e.key,
+  type: MENU + e.key,
   e
-})
+});
 
 export const getStudent = userId => ({
   type: GET_STUDENT,

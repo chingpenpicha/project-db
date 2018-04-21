@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Layout } from "antd";
 
 import GradeTable from "./GradeTable";
-import {  } from "./reducer";
+import {} from "./reducer";
 
 const { Header } = Layout;
 
@@ -12,9 +12,9 @@ const enhance = connect(
     studentName: state.teacher.studentName,
     studentCode: state.teacher.userIdTmp,
     gradeResult: state.teacher.gradeResult,
-    gpax : state.teacher.gpax
+    gpax: state.teacher.gpax
   }),
-  {  }
+  {}
 );
 
 const GradeResultPage = props => (
@@ -41,7 +41,7 @@ const GradeResultPage = props => (
           <GradeTable
             title={"ปีการศึกษา " + e.academicyear + " ภาคเรียนที่ " + e.term}
             gradeResult={e.courseGrade}
-            gpa = {e.gpa}
+            gpa={e.gpa}
           />
         </li>
       ))}
@@ -49,7 +49,9 @@ const GradeResultPage = props => (
 
     <h2 style={{ textAlign: "right" }}>
       GPAX :
-      <b style={{ marginTop: 20, marginRight: 250, color: "#253947" }}>{props.gpax}</b>
+      <b style={{ marginTop: 20, marginRight: 250, color: "#253947" }}>
+        {props.gpax}
+      </b>
     </h2>
   </Layout>
 );

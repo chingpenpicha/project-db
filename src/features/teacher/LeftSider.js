@@ -14,7 +14,7 @@ const enhance = connect(
     userId: state.login.userIdTmp,
     FName: state.login.userInformation.Fname,
     LName: state.login.userInformation.Lname,
-    faculty : state.login.userInformation.faculty
+    faculty: state.login.userInformation.faculty
   }),
   { setFieldT, menu }
 );
@@ -33,27 +33,28 @@ const LeftSider = props => (
         onSelect={e => props.menu(e)}
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["0"]}>
-          <Menu.Item key="1">
-            <Link to={"/teacher/" + props.userId + "/configGrade"} />
-            <Icon type="edit" />
-            <span className="nav-text">แก้ไขเกรดในวิชาที่สอน</span>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Link to={"/teacher/" + props.userId + "/studentGrade"} />
-            <Icon type="user" />
-            <span className="nav-text">ผลการเรียนของนิสิต</span>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <Link to={"/teacher/" + props.userId + "/searchTable"} />
-            <Icon type="table" />
-            <span className="nav-text">ค้นหาตารางเรียน</span>
-          </Menu.Item>
-          <Menu.Item key="4">
-            <Link to="/" />
-            <Icon type="logout" />
-            <span className="nav-text">Logout</span>
-          </Menu.Item>
+        defaultSelectedKeys={["0"]}
+      >
+        <Menu.Item key="1">
+          <Link to={"/teacher/" + props.userId + "/configGrade"} />
+          <Icon type="edit" />
+          <span className="nav-text">แก้ไขเกรดในวิชาที่สอน</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Link to={"/teacher/" + props.userId + "/studentGrade"} />
+          <Icon type="user" />
+          <span className="nav-text">ผลการเรียนของนิสิต</span>
+        </Menu.Item>
+        <Menu.Item key="3">
+          <Link to={"/teacher/" + props.userId + "/searchTable"} />
+          <Icon type="table" />
+          <span className="nav-text">ค้นหาตารางเรียน</span>
+        </Menu.Item>
+        <Menu.Item key="4">
+          <Link to="/" />
+          <Icon type="logout" />
+          <span className="nav-text">Logout</span>
+        </Menu.Item>
       </Menu>
     </Sider>
     <Layout
