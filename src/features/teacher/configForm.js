@@ -1,6 +1,7 @@
 import React from "react";
-import { Form, Input, Col, Row } from "antd";
+import { Form, Input, Col, Row, Select } from "antd";
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 class DynamicRule extends React.Component {
   check = () => {
@@ -31,7 +32,29 @@ class DynamicRule extends React.Component {
                   message: "Please input grade"
                 }
               ]
-            })(<Input />)}
+            })(
+              <Select
+                onChange={}
+                showSearch
+                style={{ width: 100 }}
+                placeholder="Grade"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.props.children
+                    .toLowerCase()
+                    .indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                <Option value="4.0">4.0</Option>
+                <Option value="3.5">3.5</Option>
+                <Option value="3.0">3.0</Option>
+                <Option value="2.5">2.5</Option>
+                <Option value="2.0">2.0</Option>
+                <Option value="1.5">1.5</Option>
+                <Option value="1.0">1.0</Option>
+                <Option value="0">0</Option>
+              </Select>
+            )}
           </FormItem>
         </Col>
       </Row>

@@ -15,7 +15,7 @@ export default props => (
       {props.loginSuccess == "false" && (
         <Alert
           style={{ width: "45%", marginBottom: 10 }}
-          message="Invalid ID or Password"
+          message="Invalid Username or Password"
           type="error"
           showIcon
         />
